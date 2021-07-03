@@ -1,0 +1,70 @@
+/* pages/personal/personal.wxss */
+page{
+  background-color: rgb(241, 241, 241);
+}
+.head{
+  width: 95%;
+  height: 100px;
+  margin: 20px auto;
+  background-color: rgb(0, 206, 45);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fff;
+  font-size: 30rpx;
+}
+.functionbox{
+  width: 95%;
+  /* height: 400px; */
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 9px rgba(196, 196, 196, 0.233);
+}
+.function{
+  width: 95%;
+  height: 50px;
+  /* background-color: aquamarine; */
+  border-bottom: 1px solid rgba(216, 216, 216, 0.664);
+  margin: 5px auto;
+  line-height: 50px;
+}
+.function text{
+  font-size: 12px;
+}
+.function .iconfont{
+  color: rgb(0, 206, 45);
+  margin: 0 10px;
+  font-size: 20px;
+  position: relative;
+  top: 4rpx;
+}
+.function:last-child{
+  border:none;
+}
+.portrait{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: azure;
+  margin: 0 20px;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+}
+.btn{
+  border-radius: 10px;
+  position: relative;
+  display: block;
+  text-align: center;
+}

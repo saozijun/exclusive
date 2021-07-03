@@ -1,0 +1,46 @@
+{
+  "pages":[
+    "pages/game/game",
+    "pages/order/order",
+    "pages/personal/personal",
+    "pages/problem/problem"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "iconPath": "/images/shouye.png",
+        "selectedIconPath":"/images/shouye2.png",
+        "pagePath": "pages/game/game",
+        "text": "首页"
+      },
+      {
+        "iconPath": "/images/order2.png",
+        "selectedIconPath":"/images/order.png",
+        "pagePath": "pages/order/order",
+        "text": "订单"
+      },
+      {
+        "iconPath": "/images/personal2.png",
+        "selectedIconPath":"/images/personal.png",
+        "pagePath": "pages/personal/personal",
+        "text": "我的"
+      }
+    ]
+  },
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle":"black"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-overlay": "vant-weapp/overlay",
+    "van-button": "vant-weapp/button",
+    "van-tab": "vant-weapp/tab",
+    "van-tabs": "vant-weapp/tabs",
+    "van-empty": "@vant/weapp/empty",
+    "van-card": "@vant/weapp/card"
+  }
+}

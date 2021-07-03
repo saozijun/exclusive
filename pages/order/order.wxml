@@ -1,0 +1,15 @@
+<!--pages/order/order.wxml-->
+<van-tabs swipeable>
+  <van-tab title="全部">
+    <van-empty image="network" description="没有全部" />
+  </van-tab>
+  <van-tab title="预待定">
+    <van-empty image="network" description="没有待定" />
+  </van-tab>
+  <van-tab title="待使用">
+    <van-empty image="network" description="没有使用" />
+  </van-tab>
+  <van-tab title="待评论">
+    <van-empty image="network" description="没有评论" />
+  </van-tab>
+</van-tabs>

@@ -1,0 +1,22 @@
+<!--pages/personal/personal.wxml-->
+
+<View class="head"> 
+    <image class="portrait"></image>
+    <text>校长</text>
+</View>
+<View class="functionbox">
+  <view class="function" bindtap="toproblem">
+    <i class="iconfont icon-gantanhaoyuan"></i>
+    <text>常见问题</text>
+  </view>
+  <view class="function">
+    <i class="iconfont icon-gerendaiban"></i>
+    <text>账号与安全</text>
+  </view>
+  <view class="function">
+    <i class="iconfont icon-dianhua"></i>
+    <text>咨询电话</text>
+  </view>
+</View>
+
+<van-button type="primary" class="btn">获取用户信息</van-button>

@@ -1,0 +1,2 @@
+<!--pages/problem/problem.wxml-->
+<van-empty image="network" description="没有常见问题" />

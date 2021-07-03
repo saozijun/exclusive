@@ -1,0 +1,5 @@
+/* pages/order/order.wxss */
+
+.van-tabs__line {
+  background-color: #09ab24 !important;
+}
