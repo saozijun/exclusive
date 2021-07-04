@@ -39,7 +39,7 @@
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
-  "libVersion": "2.18.0",
+  "libVersion": "2.17.0",
   "appid": "wx3567022d35c263b8",
   "projectname": "yunkaifa",
   "debugOptions": {

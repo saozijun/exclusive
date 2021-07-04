@@ -24,7 +24,7 @@ swiper-item image{
   line-height: 20px;
   text-align: center;
   color: #fff;
-  font-size: 20rpx;
+  font-size:11px;
   position: absolute;
   z-index: 99;
   right: 10px;
@@ -48,9 +48,9 @@ swiper-item image{
   box-shadow: 0px 0px 6px rgba(223, 223, 223, 0.055);
 }
 .ticketbox{
-  width: 100%;
   background-color: #fff;
   padding: 10px;
+  bottom: 0;
 }
 .xbox1{
   width: 100%;
@@ -61,7 +61,7 @@ swiper-item image{
 .van-card{
   width: 95%;
   background-color: #fff !important;
-  border-bottom: 1px solid rgba(216, 216, 216, 0.664);
+  border-top: 1px solid rgba(216, 216, 216, 0.664);
   position: relative;
 }
 .van-button{
@@ -76,9 +76,6 @@ swiper-item image{
 .van-card__price-integer{
   font-size: 26rpx !important;
 }
-.van-card:nth-child(3){
-  border-bottom: none;
-}
 .xbox1 text{
   font-weight: bold;
   margin-left: 10px;
@@ -87,7 +84,9 @@ swiper-item image{
   width: 95%;
   height: 30px;
   /* background-color: aquamarine; */
-  border-bottom: 1px solid rgba(216, 216, 216, 0.664);
+}
+.van-card__price-integer{
+  font-size: 13px !important;
 }
 .xbox2 text{
   margin-left: 20px;

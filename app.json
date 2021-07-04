@@ -36,10 +36,10 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-overlay": "vant-weapp/overlay",
-    "van-button": "vant-weapp/button",
-    "van-tab": "vant-weapp/tab",
-    "van-tabs": "vant-weapp/tabs",
+    "van-overlay": "@vant/weapp/overlay",
+    "van-button": "@vant/weapp/button",
+    "van-tab": "@vant/weapp/tab/index",
+    "van-tabs": "@vant/weapp/tabs/index",
     "van-empty": "@vant/weapp/empty",
     "van-card": "@vant/weapp/card"
   }
