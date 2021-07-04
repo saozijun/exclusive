@@ -53,9 +53,13 @@
     <text>普通票</text>
   </view>
   <block wx:for="{{title}}" wx:key="index">
-    <van-card price="免费" desc="一人一票(婴幼儿也需凭票入管)" title="{{title[index]}}" thumb="/images/luosifen.jpg">
+    <van-card price="免费" title="{{title[index]}}" thumb="/images/luosifen.jpg" currency="">
       <view slot="footer">
         <van-button size="mini">立即预定</van-button>
+      </view>
+      <view slot="desc" class="descbox">
+        <text class="iconfont icon-gantanhao"></text>
+        <text class="desc">一人一票(婴幼儿也需凭票入管)</text>
       </view>
       <view slot="price-top" class="price-top">
         <text>预定须知</text>

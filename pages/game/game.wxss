@@ -84,14 +84,14 @@ swiper-item image{
   margin-left: 10px;
 }
 .xbox2{
-  font-size: 25rpx;
   width: 95%;
-  height: 25px;
+  height: 30px;
   /* background-color: aquamarine; */
   border-bottom: 1px solid rgba(216, 216, 216, 0.664);
 }
 .xbox2 text{
   margin-left: 20px;
+  font-size: 0.5rem;
 }
 .yuding{
   z-index: 999;
@@ -172,4 +172,14 @@ swiper-item image{
 }
 .periphery{
   color: rgb(0, 119, 255);
+}
+.van-card__img{
+  border-radius: 2px !important;
+}
+.desc{
+  font-size: 10px;
+}
+.descbox{
+  position: relative;
+  top: 5px;
 }

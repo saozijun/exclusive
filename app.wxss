@@ -1,9 +1,9 @@
 /**app.wxss**/
 @font-face {
   font-family: "iconfont"; /* Project id 2649299 */
-  src: url('//at.alicdn.com/t/font_2649299_nft05fs6mo.woff2?t=1625313277904') format('woff2'),
-       url('//at.alicdn.com/t/font_2649299_nft05fs6mo.woff?t=1625313277904') format('woff'),
-       url('//at.alicdn.com/t/font_2649299_nft05fs6mo.ttf?t=1625313277904') format('truetype');
+  src: url('//at.alicdn.com/t/font_2649299_tzzczcybo3p.woff2?t=1625383252151') format('woff2'),
+       url('//at.alicdn.com/t/font_2649299_tzzczcybo3p.woff?t=1625383252151') format('woff'),
+       url('//at.alicdn.com/t/font_2649299_tzzczcybo3p.ttf?t=1625383252151') format('truetype');
 }
 
 .iconfont {
@@ -12,6 +12,13 @@
   font-style: normal;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-gantanhao:before {
+  content: "\e685";
+  color: rgb(170, 170, 170);
+  font-size: 12px;
+  margin-right: 5px;
 }
 
 .icon-dingwei:before {
