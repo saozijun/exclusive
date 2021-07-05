@@ -39,7 +39,7 @@
         <text class="iconfont icon-dingwei" />
         <text class="position">柳东新区文化广场</text>
       </view>
-      <text class="periphery">地图/周边</text>
+      <text class="periphery" bindtap="tomap">地图/周边</text>
     </view>
   </view>
 </view>

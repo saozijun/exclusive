@@ -1,6 +1,6 @@
 /* pages/personal/personal.wxss */
 page{
-  background-color: rgb(241, 241, 241);
+  background-color: rgb(224 224 224);
 }
 .head{
   width: 95%;

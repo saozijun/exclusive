@@ -3,7 +3,8 @@
     "pages/game/game",
     "pages/order/order",
     "pages/personal/personal",
-    "pages/problem/problem"
+    "pages/problem/problem",
+    "pages/map/map"
   ],
   "tabBar": {
     "list": [
@@ -33,7 +34,11 @@
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
   },
-  "style": "v2",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-overlay": "@vant/weapp/overlay",
@@ -41,6 +46,9 @@
     "van-tab": "@vant/weapp/tab/index",
     "van-tabs": "@vant/weapp/tabs/index",
     "van-empty": "@vant/weapp/empty",
-    "van-card": "@vant/weapp/card"
+    "van-card": "@vant/weapp/card",
+    "van-cell": "@vant/weapp/cell/index",
+  "van-cell-group": "@vant/weapp/cell-group/index",
+  "van-image": "@vant/weapp/image/index"
   }
 }

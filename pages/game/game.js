@@ -16,6 +16,11 @@ Page({
     duration: 500,
     title:['7月4日上午9:30入管','7月4日上午13:00入管','每日下午16:00开放第二日预约']
   },
+  tomap:function(e){
+    wx.navigateTo({
+      url:'/pages/map/map',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

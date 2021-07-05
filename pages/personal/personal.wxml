@@ -1,8 +1,9 @@
 <!--pages/personal/personal.wxml-->
 
-<View class="head"> 
-    <image class="portrait"></image>
-    <text>校长</text>
+<View class="head">
+  <!-- <image class="portrait"></image> -->
+  <van-image class="portrait" round width="70" height="70" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+  <text>岑校长</text>
 </View>
 <View class="functionbox">
   <view class="function" bindtap="toproblem">
@@ -18,5 +19,4 @@
     <text>咨询电话</text>
   </view>
 </View>
-
 <van-button type="primary" class="btn">获取用户信息</van-button>
