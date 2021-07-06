@@ -1,0 +1,87 @@
+<!--pages/game/game.wxml-->
+<view class="banner">
+  <view class="tupbox">图片</view>
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{background}}" wx:key="*this">
+      <swiper-item>
+        <image src="{{background[index]}}"></image>
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="textbox2">柳州科技馆</view>
+  <view class="bannerblock">
+    <view class="bannerblockt">
+      <view class="xuzhibox" bindtap="tonotice">
+        <view>
+          <text>游客须知</text>
+          <text>开放景点、景点简介</text>
+        </view>
+        <i class="iconfont icon-you-xi"></i>
+      </view>
+      <view class="pingfengbox"  bindtap="toevaluate">
+        <view class="xingbox">
+          <view class="xingxing">
+            <view>
+              <van-rate size="16" color="rgb(253, 143, 0)"  readonly value="{{ 4 }}" count="4" bind:change="onChange" />
+            </view>
+            <text class="text5">人气值</text>
+          </view>
+          <text>5分</text>
+        </view>
+        <i class="iconfont icon-you-xi"></i>
+      </view>
+    </view>
+    <view class="bannerblockb">
+      <view>
+        <text class="iconfont icon-dingwei" />
+        <text class="position">柳东新区文化广场</text>
+      </view>
+      <text class="periphery" bindtap="tomap">地图/周边</text>
+    </view>
+  </view>
+</view>
+<view class="ticketbox">
+  <view class="xbox1">
+    <i class="iconfont icon-huochepiao"></i>
+    <text>门票</text>
+  </view>
+</view>
+<van-tabs sticky nav-class="gametabbox" ellipsis="{{false}}" line-width="0px" custom-class="custom-class">
+  <van-tab title="全部">
+    <block wx:for="{{title}}" wx:key="index">
+      <van-card price="免费" title="{{title[index]}}" thumb="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" currency="">
+      <view slot="tag" class="tab">
+        <view>普通票</view>
+      </view>
+        <view slot="footer">
+          <van-button size="mini" bindtap="todetails" data-value="{{title[index]}}">立即预定</van-button>
+        </view>
+        <view slot="desc" class="descbox">
+          <text class="iconfont icon-gantanhao"></text>
+          <text class="desc">一人一票(婴幼儿也需凭票入管)</text>
+        </view>
+        <view slot="price-top" class="price-top">
+          <text>预定须知</text>
+          <i class="iconfont icon-you"></i>
+        </view>
+      </van-card>
+    </block>
+  </van-tab>
+  <van-tab title="普通票">
+    <block wx:for="{{title}}" wx:key="index">
+      <van-card price="免费" title="{{title[index]}}" thumb="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" currency="">
+        <view slot="footer">
+          <van-button size="mini" bindtap="todetails"  data-value="{{title[index]}}">立即预定</van-button>
+        </view>
+        <view slot="desc" class="descbox">
+          <text class="iconfont icon-gantanhao"></text>
+          <text class="desc">一人一票(婴幼儿也需凭票入管)</text>
+        </view>
+        <view slot="price-top" class="price-top">
+          <text>预定须知</text>
+          <i class="iconfont icon-you"></i>
+        </view>
+      </van-card>
+    </block>
+  </van-tab>
+</van-tabs>

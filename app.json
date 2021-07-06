@@ -1,17 +1,20 @@
 {
   "pages":[
-    "pages/game/game",
+    "pages/home/home",
     "pages/order/order",
     "pages/personal/personal",
     "pages/problem/problem",
-    "pages/map/map"
+    "pages/details/details",
+    "pages/notice/notice",
+    "pages/security/security",
+    "pages/evaluate/evaluate"
   ],
   "tabBar": {
     "list": [
       {
         "iconPath": "/images/shouye.png",
         "selectedIconPath":"/images/shouye2.png",
-        "pagePath": "pages/game/game",
+        "pagePath": "pages/home/home",
         "text": "首页"
       },
       {
@@ -48,7 +51,10 @@
     "van-empty": "@vant/weapp/empty",
     "van-card": "@vant/weapp/card",
     "van-cell": "@vant/weapp/cell/index",
-  "van-cell-group": "@vant/weapp/cell-group/index",
-  "van-image": "@vant/weapp/image/index"
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-image": "@vant/weapp/image/index",
+    "van-rate": "@vant/weapp/rate/index",
+    "van-stepper": "@vant/weapp/stepper/index",
+    "van-field": "@vant/weapp/field/index"
   }
 }

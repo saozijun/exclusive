@@ -10,11 +10,11 @@
     <i class="iconfont icon-gantanhaoyuan"></i>
     <text>常见问题</text>
   </view>
-  <view class="function">
+  <view class="function"  bindtap="tosecurity">
     <i class="iconfont icon-gerendaiban"></i>
     <text>账号与安全</text>
   </view>
-  <view class="function">
+  <view class="function" bindtap="tophone">
     <i class="iconfont icon-dianhua"></i>
     <text>咨询电话</text>
   </view>

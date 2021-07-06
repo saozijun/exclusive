@@ -11,6 +11,16 @@ Page({
       url: '/pages/problem/problem',
     })
   },
+  tophone:function(e){
+    wx.makePhoneCall({
+      phoneNumber: '17677350137' //仅为示例，并非真实的电话号码
+    })
+  },
+  tosecurity:function(e){
+    wx.navigateTo({
+      url: '/pages/security/security',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

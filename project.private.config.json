@@ -37,8 +37,20 @@
           "scene": null
         },
         {
-          "name": "pages/map/map",
-          "pathName": "pages/map/map",
+          "name": "pages/details/details",
+          "pathName": "pages/details/details",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/security/security",
+          "pathName": "pages/security/security",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/evaluate/evaluate",
+          "pathName": "pages/evaluate/evaluate",
           "query": "",
           "scene": null
         }

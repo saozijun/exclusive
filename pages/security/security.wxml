@@ -1,0 +1,12 @@
+<!--pages/security/security.wxml-->
+<view class="box1">
+  <text>头像</text>
+  <van-image class="portrait" round width="70" height="70" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+</view>
+<view class="box2">
+<view>
+  <text>会员名</text>
+  <text>岑校长</text>
+</view>
+
+</view>

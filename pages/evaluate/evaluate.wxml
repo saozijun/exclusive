@@ -1,0 +1,18 @@
+<!--pages/evaluate/evaluate.wxml-->
+<van-tabs type="card" active="{{ 0 }}" bind:change="onChange" color="rgb(100, 108, 150)" title-active-color="#fff" title-inactive-color="rgb(150, 162, 221)">
+  <van-tab title="全部(0)">
+    <van-empty description="竟然一条评论也没有" />
+  </van-tab>
+  <van-tab title="最新">
+    <van-empty description="竟然一条评论也没有" />
+  </van-tab>
+  <van-tab title="好评(0)">
+    <van-empty description="竟然一条评论也没有" />
+  </van-tab>
+  <van-tab title="中评(0)">
+    <van-empty description="竟然一条评论也没有" />
+  </van-tab>
+  <van-tab title="差评(0)">
+    <van-empty description="竟然一条评论也没有" />
+  </van-tab>
+</van-tabs>

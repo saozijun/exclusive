@@ -1,0 +1,113 @@
+/* pages/details/details.wxss */
+page{
+  background-color: rgba(221, 240, 255, 0.842);
+}
+.datailstopbox1{
+  position: relative;
+}
+.datailstopbox1,.datailstopbox2,.datailstopbox3{
+  width: 95%;
+  height: 80px;
+  background-color: #fff;
+  border-radius: 5px;
+  margin: 10px auto;
+  margin-bottom: 0;
+}
+.datailstopbox2{
+  height: 200px;
+  margin: 0px auto;
+  border-top: 1px solid rgb(224, 224, 224);
+}
+.datailstopbox3{
+  height: 180px;
+}
+.custom {
+  width: 90%;
+  height: 50px !important;
+  display: block !important;
+  line-height: 50px !important;
+  margin-top: 50px;
+  font-size: 18px !important ;
+}
+.datailstopblk{
+    width: 50%;
+    height: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 15px;
+}
+.datailstopblk text:nth-child(1){
+  font-weight: bold;
+}
+.datailstopblk2{
+  font-size: 12px;
+  margin-top: 10px;
+  color: rgb(6, 168, 0);
+}
+.datailstopblk3{
+  position: absolute;
+  font-size: 14px;
+  color: rgb(187, 187, 187);
+  right: 0;
+  top: 50%;
+  transform: translate(-10%,-50%);
+}
+.fillbox1{
+  padding: 10px 15px;
+}
+.fillbox1 text:nth-child(1){
+  font-size: 20px;
+  color: rgb(255, 38, 0);
+  margin-right: 8px;
+}
+.fillbox1 text:nth-child(2){
+  color: rgb(148, 148, 148);
+}
+.fillbox2,.fillbox3{
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  align-items: center;
+}
+.fillbox2 .fill{
+  width: 100px;
+  height: 40px;
+  border: 1px solid rgb(37, 197, 31);
+  border-radius: 2px;
+}
+.fill{
+  font-size: 14px;
+  color: rgb(37, 197, 31);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.fill text:nth-child(2){
+  font-size: 11px;
+}
+.stepper{
+  border: 1px solid rgb(230, 230, 230);
+  border-radius: 8px;
+}
+.stepper-input{
+  border-radius: 4px !important;
+  color: #000 !important;
+}
+.stepper-plus,.stepper-minus{
+  background-color: #fff !important;
+}
+.sizeclass{
+  font-size: 12px;
+}
+.fillbox4{
+  padding: 10px 15px;
+}
+.box3blo1{
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}

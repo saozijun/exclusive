@@ -1,0 +1,44 @@
+<!--pages/details/details.wxml-->
+<view class="datailstopbox1">
+  <view class="datailstopblk">
+    <text>{{title}}</text>
+    <view class="datailstopblk2">
+      <text class="iconfont icon-chenggong"></text>
+      <text>不可退</text>
+    </view>
+  </view>
+  <view class="datailstopblk3">
+    <text>预订须知</text>
+    <text class="iconfont icon-you"></text>
+  </view>
+</view>
+<view class="datailstopbox2">
+  <view class="fillbox1">
+    <text>免费</text>
+    <text class="sizeclass">还剩0张</text>
+  </view>
+  <view class="fillbox2">
+    <text class="sizeclass">游玩日期</text>
+    <view class="fill">
+      <text>明天 07-07</text>
+      <text>还剩0张</text>
+    </view>
+  </view>
+  <view class="fillbox3">
+    <text class="sizeclass">购买数量</text>
+    <van-stepper value="{{ 1 }}" bind:change="onChange" custom-class="stepper" input-class="stepper-input"
+      plus-class="stepper-plus" minus-class="stepper-minus" disable-input />
+  </view>
+  <view class="fillbox4">
+    <text class="sizeclass">2021-07-07 当日使用有效</text>
+  </view>
+</view>
+<view class="datailstopbox3">
+  <view class="box3blo1">
+    <text>取票人信息</text>
+  </view>
+  <van-field value="{{}}" label="取票人" placeholder="姓名" input-class="input-class" />
+  <van-field value="{{}}" label="手机号" placeholder="用于接收确认短信" />
+  <van-field value="{{}}" label="身份证号码" />
+</view>
+<van-button type="primary" custom-class="custom">点击预订</van-button>

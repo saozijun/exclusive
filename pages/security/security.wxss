@@ -1,0 +1,25 @@
+/* pages/security/security.wxss */
+page{
+  background-color: rgba(221, 240, 255, 0.842);
+}
+.box1{
+  height: 60px;
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  padding: 5%;
+  align-items: center;
+}
+.box2{
+  height: 60px;
+  background-color: #fff;
+  height: 100px;
+}
+.box2 view{
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px 0;
+  border-top: 1px solid rgb(219, 219, 219);
+  display: flex;
+  justify-content: space-between;
+}
