@@ -55,6 +55,7 @@
     "van-image": "@vant/weapp/image/index",
     "van-rate": "@vant/weapp/rate/index",
     "van-stepper": "@vant/weapp/stepper/index",
-    "van-field": "@vant/weapp/field/index"
+    "van-field": "@vant/weapp/field/index",
+    "van-dialog": "@vant/weapp/dialog/index"
   }
 }

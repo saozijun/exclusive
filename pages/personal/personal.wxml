@@ -2,15 +2,15 @@
 
 <View class="head">
   <!-- <image class="portrait"></image> -->
-  <van-image class="portrait" round width="70" height="70" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-  <text>岑校长</text>
+  <van-image class="portrait" round width="70" height="70" src="{{userInfo.avatarUrl}}" />
+  <text>{{userInfo.nickName}}</text>
 </View>
 <View class="functionbox">
   <view class="function" bindtap="toproblem">
     <i class="iconfont icon-gantanhaoyuan"></i>
     <text>常见问题</text>
   </view>
-  <view class="function"  bindtap="tosecurity">
+  <view class="function" bindtap="tosecurity">
     <i class="iconfont icon-gerendaiban"></i>
     <text>账号与安全</text>
   </view>
@@ -19,4 +19,6 @@
     <text>咨询电话</text>
   </view>
 </View>
-<van-button type="primary" class="btn">获取用户信息</van-button>
+<block wx:if="{{getuserbtn}}">
+  <van-button type="primary" class="btn" bind:click="getUserInfo">获取用户信息</van-button>
+</block>

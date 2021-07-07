@@ -1,47 +1,37 @@
 // pages/order/order.js
-let a = 0
-let b = 0
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    sum: ''
-  },
-  handleInput1(event) {
-    // console.log(event.detail)
-    a = event.detail
-  },
-
-  handleInput2(event) {
-    //console.log(event.detail)
-    b = event.detail
+    arr: []
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    
   },
-  batchDelete: function() {
-    wx.cloud.callFunction({
-      name: 'removes'
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
-  },
-  batchAdd: function() {
-    wx.cloud.callFunction({
-      name: 'add'
-    }).then(res => {
-      console.log(res)
-    }).catch(err => {
-      console.log(err)
-    })
-  },
+  // batchDelete: function() {
+  //   wx.cloud.callFunction({
+  //     name: 'removes'
+  //   }).then(res => {
+  //     console.log(res)
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // },
+  // batchAdd: function() {
+  //   wx.cloud.callFunction({
+  //     name: 'add',
+  //     data:{arr:this.data.arr}
+  //   }).then(res => {
+  //     console.log(res)
+  //   }).catch(err => {
+  //     console.log(err)
+  //   })
+  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

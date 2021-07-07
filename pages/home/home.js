@@ -55,15 +55,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    // 当然 promise 方式也是支持的
-    wx.cloud.callFunction({
-      name: 'add',
-      data: {
-        a: 12,
-        b: 19
+    //查询数据
+    db.collection('userInfos').get({
+      success: res => {
+        console.log(res.data)
       }
-    }).then(res=>{
-      console.log(res)
     })
     //增加数据
     // db.collection('users').add({
@@ -83,17 +79,6 @@ Page({
     //   _openid:'o7VCs5KATk6rE8CpmYtyFFsUs0E8'
     // }).remove({
     //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
-    //查询数据
-    // db.collection('users').doc('28ee4e3e60e41272282f6f92348179a4').set({
-    //   data:{
-    //     username:'韦克林',
-    //     userphone:'1002',
-    //     deposit:100000
-    //   },
-    //   success: res => {
     //     console.log(res)
     //   }
     // })
