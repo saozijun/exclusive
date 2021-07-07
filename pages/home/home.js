@@ -38,15 +38,15 @@ Page({
   todetails: function (e) {
     const value = e.currentTarget.dataset.value
     wx.navigateTo({
-      url: '/pages/details/details?value='+value,
+      url: '/pages/details/details?value=' + value,
     })
   },
-  tonotice:function(e){
+  tonotice: function (e) {
     wx.navigateTo({
       url: '/pages/notice/notice',
     })
   },
-  toevaluate:function(e){
+  toevaluate: function (e) {
     wx.navigateTo({
       url: '/pages/evaluate/evaluate',
     })
@@ -55,6 +55,16 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    // 当然 promise 方式也是支持的
+    wx.cloud.callFunction({
+      name: 'add',
+      data: {
+        a: 12,
+        b: 19
+      }
+    }).then(res=>{
+      console.log(res)
+    })
     //增加数据
     // db.collection('users').add({
     //   data:[

@@ -167,7 +167,7 @@ swiper-item image{
   color: rgb(253, 143, 0);
 }
 .pingfengbox .text5{
-  font-size: 25rpx;
+  font-size: 15px;
   color: rgb(102, 102, 102);
 }
 .tab{

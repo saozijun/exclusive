@@ -1,1 +1,10 @@
 /* pages/order/order.wxss */
+.number{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.number van-button{
+  margin: 10px 0;
+}

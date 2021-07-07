@@ -1,7 +1,11 @@
 <!--pages/order/order.wxml-->
-<van-tabs swipeable animated color="#09ab24" title-active-color="#09ab24" line-width="50px"> 
+<van-tabs swipeable animated color="#09ab24" title-active-color="#09ab24" line-width="50px">
   <van-tab title="全部">
     <van-empty image="network" description="没有全部" />
+    <view class="number">
+      <van-button type='primary' bind:click="batchDelete">清空多条数据</van-button>
+      <van-button type='primary' bind:click="batchAdd">添加多条数据</van-button>
+    </view>
   </van-tab>
   <van-tab title="预待定">
     <van-empty image="network" description="没有待定" />
