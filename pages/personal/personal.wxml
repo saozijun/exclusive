@@ -20,5 +20,8 @@
   </view>
 </View>
 <block wx:if="{{getuserbtn}}">
-  <van-button type="primary" class="btn" bind:click="getUserInfo">获取用户信息</van-button>
+  <van-button type="primary" class="btn" bind:click="getUserInfo">登录</van-button>
+</block>
+<block wx:else>
+  <van-button type="primary" class="btn" bind:click="secede">退出登录</van-button>
 </block>

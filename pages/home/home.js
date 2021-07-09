@@ -7,16 +7,35 @@ Page({
       path: 'page/component/pages/swiper/swiper'
     }
   },
-
   data: {
     background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg'],
-    indicatorDots: false,
-    vertical: false,
-    autoplay: true,
-    interval: 2000,
-    duration: 500,
-    title: ['7月4日上午9:30入管', '7月4日上午13:00入管', '每日下午16:00开放第二日预约'],
-    value: 4,
+    title: [],
+    show:true
+  },
+  getUserInfo:function(e){
+    console.log(e.detail.userInfo)
+    wx.setStorageSync('userInfo', e.detail.userInfo)
+    //把用户信息存到数据库
+    db.collection('userInfos').where({}).get({
+      success: res=> {
+        console.log(res.data)
+        wx.cloud.callFunction({
+          name: 'add',
+          data:{userInfo:this.data.userInfo,res:res.data},
+          success: res=>{
+            console.log(res)
+          }
+        })
+      }
+    })
+    this.setData({
+      userInfo:e.detail.userInfo,
+      show:false
+    })
+    //用户登录过期时间
+    let timestamp = Date.parse(new Date());
+    let expiration = timestamp + 25920000; //259200秒（3天）
+    wx.setStorageSync('expiration', expiration)
   },
   onChange(event) {
     this.setData({
@@ -37,9 +56,15 @@ Page({
   },
   todetails: function (e) {
     const value = e.currentTarget.dataset.value
-    wx.navigateTo({
-      url: '/pages/details/details?value=' + value,
-    })
+    if(wx.getStorageSync('userInfo') ==""){
+      this.setData({
+        show:true
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/details/details?value=' + value,
+      })
+    }
   },
   tonotice: function (e) {
     wx.navigateTo({
@@ -55,48 +80,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //查询数据
-    db.collection('userInfos').get({
-      success: res => {
-        console.log(res.data)
-      }
+    this.setData({
+      show:wx.getStorageSync('userInfo')==""?true:false
     })
-    //增加数据
-    // db.collection('users').add({
-    //   data:[
-    //     {
-    //     username:'岑新灿',
-    //     userphone:'102',
-    //     deposit:1000
-    //     }
-    //   ],
-    //   success: res=>{
-    //     console.log(res)
-    //   }
-    // })
-    //删除数据
-    // db.collection('users').where({
-    //   _openid:'o7VCs5KATk6rE8CpmYtyFFsUs0E8'
-    // }).remove({
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
-    //通过获取长度循环删除全部数据
-    // db.collection('users').where({
-    //   _openid: 'o7VCs5KATk6rE8CpmYtyFFsUs0E8'
-    // }).get({
+    console.log(this.data.show)
+    const date = new Date()
+    const month = date.getMonth()+1
+    const day = date.getDate()+1
+    this.setData({
+      title:[month+'月'+day+'日'+'上午9:30入馆',month+'月'+day+'日'+'上午13:00入馆','每日下午16:00开放第二日预约']
+    })
+    let timestamp = Date.parse(new Date());
+    let expiration = wx.getStorageSync('expiration')
+    if(expiration != "" && (timestamp>expiration)){
+      wx.clearStorageSync()
+      this.setData({
+        userInfo:{},
+        show:true
+      })
+    }
+    //查询数据
+    // db.collection('userInfo').get({
     //   success: res => {
-    //     console.log(res.data.length)
-    //     for (let i = 0; i < res.data.length; i++) {
-    //       db.collection('users').where({
-    //         _openid: 'o7VCs5KATk6rE8CpmYtyFFsUs0E8'
-    //       }).remove({
-    //         success: res => {
-    //           console.log(res)
-    //         }
-    //       })
-    //     }
+    //     console.log(res.data)
     //   }
     // })
   },
@@ -112,7 +118,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    if(wx.getStorageSync('userInfo') !=""){
+      console.log(wx.getStorageSync('userInfo'))
+      this.setData({
+        userInfo:wx.getStorageSync('userInfo'),
+        show:false
+      })
+    }
   },
 
   /**

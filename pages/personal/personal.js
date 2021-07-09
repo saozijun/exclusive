@@ -5,9 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfos: [], //全部用户
     userInfo: {},
-    getuserbtn:true
+    getuserbtn: true
   },
   //获取用户信息
   getUserInfo: function (e) {
@@ -17,33 +16,37 @@ Page({
       success: (res) => {
         this.setData({
           userInfo: res.userInfo,
-          getuserbtn:false
+          getuserbtn: false
         })
         console.log(this.data.userInfo)
         //存当前用户
         wx.setStorageSync('userInfo', res.userInfo)
-        //判断全部用户的数组对象里是否存在
-        if(this.data.userInfos.indexOf(res.userInfo) == -1){
-          const userInfostemp = this.data.userInfos
-          userInfostemp[this.data.userInfos.length] = res.userInfo
-          this.setData({
-            userInfos:userInfostemp
-          })
-          // console.log(this.data.userInfos)
-          var timestamp = Date.parse(new Date());
-          var expiration = timestamp + 259200; //259200秒（3天）
-          wx.setStorageSync('userInfos', this.data.userInfos)
+        //把用户信息存到数据库
+        db.collection('userInfos').where({}).get({
+          success: res=> {
+            console.log(res.data)
             wx.cloud.callFunction({
               name: 'add',
-              data:{userInfo:this.data.userInfo,expiration:expiration}
-            }).then(res => {
-              console.log(res)
-            }).catch(err => {
-              console.log(err)
+              data:{userInfo:this.data.userInfo,res:res.data},
+              success: res=>{
+                console.log(res)
+              }
             })
-        }
+          }
+        })
+        //用户登录过期时间
+        let timestamp = Date.parse(new Date());
+        let expiration = timestamp + 25920000; //259200秒（3天）
+        wx.setStorageSync('expiration', expiration)
       }
     })
+  },
+  secede: function (e) {
+    this.setData({
+      userInfo: {},
+      getuserbtn: true
+    })
+    wx.clearStorageSync()
   },
   toproblem: function (e) {
     wx.navigateTo({
@@ -57,20 +60,14 @@ Page({
   },
   tosecurity: function (e) {
     wx.navigateTo({
-      url: '/pages/security/security?userInfo='+JSON.stringify(this.data.userInfo),
+      url: '/pages/security/security?userInfo=' + JSON.stringify(this.data.userInfo),
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(wx.getStorageSync('userInfo'))
-    if(wx.getStorageSync('userInfo') !=""){
-      this.setData({
-        userInfo:wx.getStorageSync('userInfo'),
-        getuserbtn:false
-      })
-    }
+
   },
 
   /**
@@ -84,7 +81,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    console.log(wx.getStorageSync('userInfo'))
+    if (wx.getStorageSync('userInfo') != "") {
+      this.setData({
+        userInfo: wx.getStorageSync('userInfo'),
+        getuserbtn: false
+      })
+    }
   },
 
   /**

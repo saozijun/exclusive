@@ -7,15 +7,22 @@ cloud.init({
 const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
-  try {
-    return await db.collection('userInfos').add({
-      data: {
-        userInfo: event.userInfo,
-        _openid: wxContext.OPENID,
-        expiration:event.expiration
-      }
-    })
-  } catch (e) {
-    console.error(e)
+  let bol = true
+  for (let i = 0; i < event.res.length; i++) {
+    if (event.res[i]._openid == wxContext.OPENID) {
+      bol = false
+    }
+  }
+  if (bol) {
+    try {
+      return await db.collection('userInfos').add({
+        data: {
+          userInfo: event.userInfo,
+          _openid: wxContext.OPENID,
+        }
+      })
+    } catch (e) {
+      console.error(e)
+    }
   }
 }
