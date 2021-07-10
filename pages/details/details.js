@@ -56,12 +56,15 @@ Page({
           phone:this.data.phone,               //用户的手机号
           card:this.data.card,                 //用户的身份证
           cost:this.data.cost,                 //票的费用
-          state:'已预订',                      //票的状态
-          buytime:Utils.formatTime(date),      //票下单时间
+          state:'已预订',                      //票的状态.
+          tomorrowsdate:this.data.title.slice(0,5),
+          buydate:Utils.formatTime(date),      //票下单时间
+          buytime:Utils.formatTime3(date), 
           expiretime:Utils.formatTime(new Date(date.setDate(date.getDate()+1))), //票过期时间
           buynumber:this.data.buynumber,       //买的数量
           week:weeks[day],                     //周几下的单
-          ordernumber:Utils.formatTime2(date)   //订单编号
+          ordernumber:Utils.formatTime2(date),   //订单编号
+          year:date.getFullYear
         }},
         success: res=>{
           console.log(res)

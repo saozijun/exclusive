@@ -1,7 +1,29 @@
 <!--pages/order/order.wxml-->
 <van-tabs swipeable animated color="#09ab24" title-active-color="#09ab24" line-width="50px">
   <van-tab title="全部">
+  <block wx:if="{{fasle}}">
     <van-empty image="network" description="没有全部" />
+  </block>
+  <block wx:for="{{order}}" wx:key="index">
+    <view class="orderbox">
+      <van-cell title="{{order[index].userorder.buytime}} {{order[index].userorder.week}}" value="已支付" border="{{false}}" custom-class="cellclass" />
+      <van-row custom-class="orderlist" >
+        <van-col span="2" offset="1">
+          <van-image width="50" height="50" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+        </van-col>
+        <van-col span="11" offset="2" custom-class="orderlist1">
+          <text class="ordertext1">{{order[index].userorder.title}}</text>
+          <text class="ordertext2">{{order[index].userorder.buynumber}}张 {{order[index].userorder.tomorrowsdate}}(出游)</text>
+        </van-col>
+        <van-col span="2" offset="5" class="ordertext3">{{order[index].userorder.cost}}</van-col>
+      </van-row>
+      <van-row custom-class="orderlist2">
+        <van-col span="5"  offset="1"  class="ordertext4">共{{order[index].userorder.buynumber}}张门票</van-col>
+        <van-col span="3" offset="11"  class="ordertext5">合计:</van-col>
+        <van-col  class="ordertext6">{{order[index].userorder.cost}}</van-col>
+      </van-row>
+    </view>
+  </block>
   </van-tab>
   <van-tab title="预待定">
     <van-empty image="network" description="没有待定" />

@@ -56,13 +56,13 @@ Page({
   },
   todetails: function (e) {
     const value = e.currentTarget.dataset.value
-    if(wx.getStorageSync('userInfo') ==""){
-      this.setData({
-        show:true
-      })
-    }else{
+    if(wx.getStorageSync('userInfo') !="" && value !='每日下午16:00开放第二日预约'){
       wx.navigateTo({
         url: '/pages/details/details?value=' + value,
+      })
+    }else{
+      this.setData({
+        show:true
       })
     }
   },
@@ -83,7 +83,7 @@ Page({
     this.setData({
       show:wx.getStorageSync('userInfo')==""?true:false
     })
-    console.log(this.data.show)
+    // console.log(this.data.show)
     const date = new Date()
     const month = date.getMonth()+1
     const day = date.getDate()+1
@@ -119,7 +119,7 @@ Page({
    */
   onShow: function () {
     if(wx.getStorageSync('userInfo') !=""){
-      console.log(wx.getStorageSync('userInfo'))
+      // console.log(wx.getStorageSync('userInfo'))
       this.setData({
         userInfo:wx.getStorageSync('userInfo'),
         show:false

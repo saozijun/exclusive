@@ -56,6 +56,8 @@
     "van-rate": "@vant/weapp/rate/index",
     "van-stepper": "@vant/weapp/stepper/index",
     "van-field": "@vant/weapp/field/index",
-    "van-dialog": "@vant/weapp/dialog/index"
+    "van-dialog": "@vant/weapp/dialog/index",
+    "van-row": "@vant/weapp/row/index",
+     "van-col": "@vant/weapp/col/index"
   }
 }

@@ -1,11 +1,14 @@
 // pages/order/order.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    arr: []
+    orders: [],
+    orderbol:true,
+    tomorrows:[]
   },
   /**
    * 生命周期函数--监听页面加载
@@ -44,7 +47,23 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      success: res=>{
+        // console.log(res.result.openid)
+        db.collection('order').where({
+          _openid:res.result.openid
+        }).get({
+          success: res=> {
+            // console.log(res.data)
+            this.setData({
+              order:res.data,
+            })
+            const tomorrowstemp = new Array
+          }
+        })
+      }
+    })
   },
 
   /**

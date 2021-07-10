@@ -26,7 +26,7 @@ const formatTime3 = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return `${[year, month, day].map(formatNumber).join('-')}`
+  return ((month<10?'0'+month:month)+'月'+(day<10?'0'+day:day)+'日')
 }
 
 const formatNumber = n => {

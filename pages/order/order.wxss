@@ -1,4 +1,7 @@
 /* pages/order/order.wxss */
+page{
+  background-color: rgb(242, 249, 255);
+}
 .number{
   display: flex;
   flex-direction: column;
@@ -7,4 +10,51 @@
 }
 .number van-button{
   margin: 10px 0;
+}
+.orderbox{
+  width: 95%;
+  height: 200px;
+  background-color: rgb(255, 255, 255);
+  margin: 10px auto;
+  border-radius: 6px;
+}
+.cellclass{
+  background: none !important;
+}
+.van-cell__title{
+  color: rgb(87, 87, 87);
+}
+.van-cell__value{
+  color: #000 !important;
+}
+.orderlist1{
+  display: flex;
+  flex-direction: column;
+}
+.ordertext1{
+  font-weight: bold;
+}
+.ordertext2{
+  font-size: 12px;
+  margin-top: 10px;
+}
+.ordertext3{
+  color: rgb(201, 45, 45);
+}
+.ordertext4{
+  font-size: 12px;
+}
+.ordertext5{
+  font-size: 14px;
+}
+.ordertext6{
+  font-size: 18px;
+  color: rgb(201, 45, 45);
+}
+.orderlist2{
+  height: 50px;
+  line-height: 50px;
+}
+.orderlist{
+  margin: 15px 0;
 }
