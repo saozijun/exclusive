@@ -1,6 +1,6 @@
 /* pages/game/game.wxss */
 page{
-  background-color: rgba(221, 240, 255, 0.842);
+  background-color: rgb(242, 249, 255);
 }
 swiper{
   height: 220px;

@@ -1,11 +1,11 @@
 <!--pages/order/order.wxml-->
 <van-tabs swipeable animated color="#09ab24" title-active-color="#09ab24" line-width="50px">
   <van-tab title="全部">
-  <block wx:if="{{fasle}}">
+  <block wx:if="{{orderbol}}">
     <van-empty image="network" description="没有全部" />
   </block>
   <block wx:for="{{order}}" wx:key="index">
-    <view class="orderbox">
+    <view class="orderbox" bindtap="orderDetails" data-order="{{order[index]}}">
       <van-cell title="{{order[index].userorder.buytime}} {{order[index].userorder.week}}" value="已支付" border="{{false}}" custom-class="cellclass" />
       <van-row custom-class="orderlist" >
         <van-col span="2" offset="1">
@@ -13,7 +13,7 @@
         </van-col>
         <van-col span="11" offset="2" custom-class="orderlist1">
           <text class="ordertext1">{{order[index].userorder.title}}</text>
-          <text class="ordertext2">{{order[index].userorder.buynumber}}张 {{order[index].userorder.tomorrowsdate}}(出游)</text>
+          <text class="ordertext2">{{order[index].userorder.buynumber}}张 {{order[index].userorder.expiretime}}(出游)</text>
         </van-col>
         <van-col span="2" offset="5" class="ordertext3">{{order[index].userorder.cost}}</van-col>
       </van-row>

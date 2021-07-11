@@ -7,7 +7,8 @@
     "pages/details/details",
     "pages/notice/notice",
     "pages/security/security",
-    "pages/evaluate/evaluate"
+    "pages/evaluate/evaluate",
+    "pages/orderdetails/orderdetails"
   ],
   "tabBar": {
     "list": [

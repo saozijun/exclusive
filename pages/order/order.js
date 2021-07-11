@@ -8,13 +8,26 @@ Page({
   data: {
     orders: [],
     orderbol:true,
-    tomorrows:[]
+    tomorrows:[],
+    show:null   //登录状态
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    wx.showLoading({
+      title: '加载中',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 1000)
+  },
+  orderDetails:function(e){
+    console.log(e.currentTarget.dataset.order)
+    const order= JSON.stringify(e.currentTarget.dataset.order);
+    wx.navigateTo({
+      url: '/pages/orderdetails/orderdetails?order='+order,
+    })
   },
   // batchDelete: function() {
   //   wx.cloud.callFunction({
@@ -47,23 +60,33 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      success: res=>{
-        // console.log(res.result.openid)
-        db.collection('order').where({
-          _openid:res.result.openid
-        }).get({
-          success: res=> {
-            // console.log(res.data)
-            this.setData({
-              order:res.data,
-            })
-            const tomorrowstemp = new Array
-          }
-        })
-      }
+    this.setData({
+      show:wx.getStorageSync('userInfo')!=""?true:false
     })
+    if(this.data.show){
+      wx.cloud.callFunction({
+        name: 'getOpenid',
+        success: res=>{
+          // console.log(res.result.openid)
+          db.collection('order').where({
+            _openid:res.result.openid   //找和该用户匹配的openid的订单
+          }).get({
+            success: res=> {
+              // console.log(res.data)
+              this.setData({
+                order:res.data,
+                orderbol:false
+              })
+            }
+          })
+        }
+      })
+    }else{
+      this.setData({
+        order:[],
+        orderbol:true
+      })
+    }
   },
 
   /**

@@ -1,1 +1,4 @@
 /* pages/notice/notice.wxss */
+page{
+  background-color: rgb(242, 249, 255);
+}
