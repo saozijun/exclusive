@@ -56,10 +56,12 @@ Page({
   },
   todetails: function (e) {
     const value = e.currentTarget.dataset.value
-    if(wx.getStorageSync('userInfo') !="" && value !='每日下午16:00开放第二日预约'){
-      wx.navigateTo({
-        url: '/pages/details/details?value=' + value,
-      })
+    if(wx.getStorageSync('userInfo') !=""){
+      if(value !='每日下午16:00开放第二日预约'){
+        wx.navigateTo({
+          url: '/pages/details/details?value=' + value,
+        })
+      }
     }else{
       this.setData({
         show:true

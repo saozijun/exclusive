@@ -2,6 +2,9 @@
 page{
   background-color: rgb(242, 249, 255);
 }
+.van-col--offset-5 {
+  width: 40px !important;
+}
 .number{
   display: flex;
   flex-direction: column;

@@ -1,11 +1,14 @@
 // pages/orderdetails/orderdetails.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    order:[]
+    order:[],
+    id:'',
+    subText:'立即使用'
   },
 
   /**
@@ -14,8 +17,14 @@ Page({
   onLoad: function (options) {
     const order = JSON.parse(options.order)
     console.log(JSON.parse(options.order))
+    if(order.userorder.state == '待评价'){
+      this.setData({
+        subText:"立即评价"
+      })
+    }
     this.setData({
-      order:order.userorder
+      order:order.userorder,
+      id:order._id
     })
   },
 
@@ -26,18 +35,31 @@ Page({
 
   },
   usenow:function(e){
-    wx.showLoading({
-      title: '加载中',
-    })
-    setTimeout(function () {
-      wx.showToast({
-        title: '使用成功',
-        icon: 'success',
-        duration: 500
+    if(this.data.subText == '立即评价'){
+      db.collection('order').doc(this.data.id).update({
+        // data 传入需要局部更新的数据
+        data: {
+          // 表示将 done 字段置为 true
+          userorder:{state: '已评价'}
+        },
+        success: (res)=> {
+          console.log(res)
+        }
       })
-      wx.hideLoading()
-        wx.navigateBack()
-    }, 1000)
+    }else{
+      db.collection('order').doc(this.data.id).update({
+        // data 传入需要局部更新的数据
+        data: {
+          // 表示将 done 字段置为 true
+          userorder:{state: '待评价'}
+        },
+        success: (res)=> {
+          console.log(res)
+        }
+      })
+    }
+
+    wx.navigateBack()
   },
   /**
    * 生命周期函数--监听页面显示

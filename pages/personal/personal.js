@@ -1,4 +1,5 @@
 // pages/personal/personal.js
+const db = wx.cloud.database()
 Page({
 
   /**
