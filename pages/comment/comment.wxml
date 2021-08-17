@@ -1,0 +1,23 @@
+<!--pages/comment/comment.wxml-->
+<view class="content">
+<view>
+  <text>总体评分：</text>
+  <van-rate value="{{ value }}" bind:change="onChange" />
+</view>
+<view>
+  <van-cell-group>
+  <van-field
+    value="{{ message }}"
+    label="商品评价"
+    type="textarea"
+    bind:input="onInput"
+    placeholder="请输入评论"
+    autosize
+    maxlength="100"
+    show-word-limit
+    border="{{ false }}"
+  />
+</van-cell-group>
+</view>
+<van-button type="primary" bind:click="usenow">立即评论</van-button>
+</view>

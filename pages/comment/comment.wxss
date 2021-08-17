@@ -1,0 +1,4 @@
+/* pages/comment/comment.wxss */
+.content{
+  text-align: center;
+}

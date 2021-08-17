@@ -25,31 +25,20 @@ Page({
     }, 1000)
   },
   orderDetails:function(e){
-    console.log(e.currentTarget.dataset.order)
+    const state = e.currentTarget.dataset.order.userorder.state  //当前点击的订单状态
+    console.log(e.currentTarget.dataset.order.userorder.state)
     const order= JSON.stringify(e.currentTarget.dataset.order);
-    wx.navigateTo({
-      url: '/pages/orderdetails/orderdetails?order='+order,
-    })
+    if(state == '待使用'){
+      wx.navigateTo({
+        url: '/pages/orderdetails/orderdetails?order='+order
+      })
+    }else if(state == '待评价'){
+      wx.navigateTo({
+        url: '/pages/comment/comment?order='+order
+      })
+    }
+    
   },
-  // batchDelete: function() {
-  //   wx.cloud.callFunction({
-  //     name: 'removes'
-  //   }).then(res => {
-  //     console.log(res)
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
-  // },
-  // batchAdd: function() {
-  //   wx.cloud.callFunction({
-  //     name: 'add',
-  //     data:{arr:this.data.arr}
-  //   }).then(res => {
-  //     console.log(res)
-  //   }).catch(err => {
-  //     console.log(err)
-  //   })
-  // },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -74,9 +63,10 @@ Page({
             _openid:res.result.openid   //找和该用户匹配的openid的订单
           }).get({
             success: res=> {
-              console.log(res.data)
-              const tmepReserves = []
+              // console.log(res.data)
+              //待使用临时数组
               const tmepUseds = []
+              //待评价临时数组
               const tmepComments = []
               for(let i = 0;i<res.data.length;i++){
                 const date = new Date(res.data[i].userorder.time)  //获取订单下单时间
@@ -94,7 +84,6 @@ Page({
               }
               this.setData({
                 order:res.data,
-                reserves:tmepReserves,
                 useds:tmepUseds,
                 comments:tmepComments,
                 orderbol:false

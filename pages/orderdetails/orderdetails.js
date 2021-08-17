@@ -6,9 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    order:[],
-    id:'',
-    subText:'立即使用'
+    order: [],
+    id: ''
   },
 
   /**
@@ -17,14 +16,9 @@ Page({
   onLoad: function (options) {
     const order = JSON.parse(options.order)
     console.log(JSON.parse(options.order))
-    if(order.userorder.state == '待评价'){
-      this.setData({
-        subText:"立即评价"
-      })
-    }
     this.setData({
-      order:order.userorder,
-      id:order._id
+      order: order.userorder,
+      id: order._id
     })
   },
 
@@ -34,32 +28,20 @@ Page({
   onReady: function () {
 
   },
-  usenow:function(e){
-    if(this.data.subText == '立即评价'){
-      db.collection('order').doc(this.data.id).update({
-        // data 传入需要局部更新的数据
-        data: {
-          // 表示将 done 字段置为 true
-          userorder:{state: '已评价'}
-        },
-        success: (res)=> {
-          console.log(res)
+  usenow: function (e) {
+    db.collection('order').doc(this.data.id).update({
+      // data 传入需要局部更新的数据
+      data: {
+        // 表示将 done 字段置为 true
+        userorder: {
+          state: '待评价'
         }
-      })
-    }else{
-      db.collection('order').doc(this.data.id).update({
-        // data 传入需要局部更新的数据
-        data: {
-          // 表示将 done 字段置为 true
-          userorder:{state: '待评价'}
-        },
-        success: (res)=> {
-          console.log(res)
-        }
-      })
-    }
-
-    wx.navigateBack()
+      },
+      success: (res) => {
+        console.log(res)
+        wx.navigateBack()
+      }
+    })
   },
   /**
    * 生命周期函数--监听页面显示

@@ -1,5 +1,5 @@
 {
-  "pages":[
+  "pages": [
     "pages/home/home",
     "pages/order/order",
     "pages/personal/personal",
@@ -8,35 +8,36 @@
     "pages/notice/notice",
     "pages/security/security",
     "pages/evaluate/evaluate",
-    "pages/orderdetails/orderdetails"
+    "pages/orderdetails/orderdetails",
+    "pages/comment/comment"
   ],
   "tabBar": {
     "list": [
       {
         "iconPath": "/images/shouye.png",
-        "selectedIconPath":"/images/shouye2.png",
+        "selectedIconPath": "/images/shouye2.png",
         "pagePath": "pages/home/home",
         "text": "首页"
       },
       {
         "iconPath": "/images/order2.png",
-        "selectedIconPath":"/images/order.png",
+        "selectedIconPath": "/images/order.png",
         "pagePath": "pages/order/order",
         "text": "订单"
       },
       {
         "iconPath": "/images/personal2.png",
-        "selectedIconPath":"/images/personal.png",
+        "selectedIconPath": "/images/personal.png",
         "pagePath": "pages/personal/personal",
         "text": "我的"
       }
     ]
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "permission": {
     "scope.userLocation": {
@@ -59,6 +60,6 @@
     "van-field": "@vant/weapp/field/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-row": "@vant/weapp/row/index",
-     "van-col": "@vant/weapp/col/index"
+    "van-col": "@vant/weapp/col/index"
   }
 }
