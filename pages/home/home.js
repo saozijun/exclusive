@@ -8,9 +8,11 @@ Page({
     }
   },
   data: {
-    background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg'],
+    background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg' || '../../images/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg' || '../../images/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg' || '../../images/banner3.jpg'],
+    goodsUrl: 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg' ||'../../images/luosifen.jpg',
     title: [],
-    show:true
+    show:true,
+    sheetShow:true
   },
   getUserInfo:function(e){
     console.log(e.detail.userInfo)
@@ -42,12 +44,19 @@ Page({
       value: event.detail,
     });
   },
+  //预定须知弹框点击关闭和遮罩时触发
+  onOverlay(e){
+    this.setData({
+      sheetShow: false
+    });
+  },
+  //点击预定须知
+  reserve(e){
+    this.setData({
+      sheetShow: true
+    });
+  },
   tomap: function (e) {
-    // wx.chooseLocation({
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
     wx.openLocation({
       latitude: 24.371826698,
       longitude: 109.547209349,
@@ -86,9 +95,16 @@ Page({
       show:wx.getStorageSync('userInfo')==""?true:false
     })
     // console.log(this.data.show)
-    const date = new Date()
+    //获取当前时间
+    let dateTime = new Date()
+    //给当前时间加一天
+    dateTime = dateTime.setDate(dateTime.getDate()+1)
+    // console.log(dateTime)
+    //当前时间加一天
+    const date = new Date(dateTime)
     const month = date.getMonth()+1
-    const day = date.getDate()+1
+    const day = date.getDate()
+
     this.setData({
       title:[month+'月'+day+'日'+'上午9:30入馆',month+'月'+day+'日'+'上午13:00入馆','每日下午16:00开放第二日预约']
     })

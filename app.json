@@ -60,6 +60,8 @@
     "van-field": "@vant/weapp/field/index",
     "van-dialog": "@vant/weapp/dialog/index",
     "van-row": "@vant/weapp/row/index",
-    "van-col": "@vant/weapp/col/index"
+    "van-col": "@vant/weapp/col/index",
+    "van-action-sheet": "@vant/weapp/action-sheet/index",
+    "van-popup": "@vant/weapp/popup/index"
   }
 }

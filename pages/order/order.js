@@ -26,7 +26,7 @@ Page({
   },
   orderDetails:function(e){
     const state = e.currentTarget.dataset.order.userorder.state  //当前点击的订单状态
-    console.log(e.currentTarget.dataset.order.userorder.state)
+    // console.log(e.currentTarget.dataset.order.userorder.state)
     const order= JSON.stringify(e.currentTarget.dataset.order);
     if(state == '待使用'){
       wx.navigateTo({

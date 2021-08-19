@@ -18,7 +18,7 @@ Page({
    */
   onLoad: function (options) {
     const order = JSON.parse(options.order)
-    console.log(JSON.parse(options.order))
+    // console.log(JSON.parse(options.order))
     this.setData({
       order:order
     })
