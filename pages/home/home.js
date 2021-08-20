@@ -8,14 +8,16 @@ Page({
     }
   },
   data: {
-    background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg' || '../../images/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg' || '../../images/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg' || '../../images/banner3.jpg'],
-    goodsUrl: 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg' ||'../../images/luosifen.jpg',
-    title: [],
-    show:true,
-    sheetShow:true
+    background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg' || '../../images/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg' || '../../images/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg' || '../../images/banner3.jpg'], //轮播图数组
+    goodsUrl: 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg' ||'../../images/luosifen.jpg',  //商品图片
+    title: [],  //商品标题
+    show:true,  //判断是否登录
+    sheetShow:false,   //显示隐藏预定须知
+    popupDate:[],  //须知日期
   },
+  //用户登录
   getUserInfo:function(e){
-    console.log(e.detail.userInfo)
+    // console.log(e.detail.userInfo)
     wx.setStorageSync('userInfo', e.detail.userInfo)
     //把用户信息存到数据库
     db.collection('userInfos').where({}).get({
@@ -39,11 +41,6 @@ Page({
     let expiration = timestamp + 25920000; //259200秒（3天）
     wx.setStorageSync('expiration', expiration)
   },
-  onChange(event) {
-    this.setData({
-      value: event.detail,
-    });
-  },
   //预定须知弹框点击关闭和遮罩时触发
   onOverlay(e){
     this.setData({
@@ -56,6 +53,7 @@ Page({
       sheetShow: true
     });
   },
+  //跳转地图
   tomap: function (e) {
     wx.openLocation({
       latitude: 24.371826698,
@@ -63,6 +61,7 @@ Page({
       name: '柳东新区文化广场'
     })
   },
+  //跳转商品详情
   todetails: function (e) {
     const value = e.currentTarget.dataset.value
     if(wx.getStorageSync('userInfo') !=""){
@@ -77,11 +76,13 @@ Page({
       })
     }
   },
+  //跳转须知页面
   tonotice: function (e) {
     wx.navigateTo({
       url: '/pages/notice/notice',
     })
   },
+   //跳转评论页面
   toevaluate: function (e) {
     wx.navigateTo({
       url: '/pages/evaluate/evaluate',
@@ -106,7 +107,8 @@ Page({
     const day = date.getDate()
 
     this.setData({
-      title:[month+'月'+day+'日'+'上午9:30入馆',month+'月'+day+'日'+'上午13:00入馆','每日下午16:00开放第二日预约']
+      title:[month+'月'+day+'日'+'上午9:30入馆',month+'月'+day+'日'+'上午13:00入馆','每日下午16:00开放第二日预约'],
+      popupDate:[month+'月'+day,(month<10?'0'+month:month) +'月'+day+'日']
     })
     let timestamp = Date.parse(new Date());
     let expiration = wx.getStorageSync('expiration')

@@ -9,7 +9,7 @@
       <van-cell title="{{order[index].userorder.buytime}} {{order[index].userorder.week}}" value="{{order[index].userorder.state}}" border="{{false}}" custom-class="cellclass" />
       <van-row custom-class="orderlist" >
         <van-col span="2" offset="1">
-          <van-image width="50" height="50" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image width="50" height="50" src="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" />
         </van-col>
         <van-col span="11" offset="2" custom-class="orderlist1">
           <text class="ordertext1">{{order[index].userorder.title}}</text>
@@ -34,7 +34,7 @@
       <van-cell title="{{reserves[index].userorder.buytime}} {{reserves[index].userorder.week}}" value="{{reserves[index].userorder.state}}" border="{{false}}" custom-class="cellclass" />
       <van-row custom-class="orderlist" >
         <van-col span="2" offset="1">
-          <van-image width="50" height="50" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image width="50" height="50" src="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" />
         </van-col>
         <van-col span="11" offset="2" custom-class="orderlist1">
           <text class="ordertext1">{{reserves[index].userorder.title}}</text>
@@ -59,7 +59,7 @@
       <van-cell title="{{useds[index].userorder.buytime}} {{useds[index].userorder.week}}" value="{{useds[index].userorder.state}}" border="{{false}}" custom-class="cellclass" />
       <van-row custom-class="orderlist" >
         <van-col span="2" offset="1">
-          <van-image width="50" height="50" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image width="50" height="50" src="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" />
         </van-col>
         <van-col span="11" offset="2" custom-class="orderlist1">
           <text class="ordertext1">{{useds[index].userorder.title}}</text>
@@ -84,7 +84,7 @@
       <van-cell title="{{comments[index].userorder.buytime}} {{comments[index].userorder.week}}" value="{{comments[index].userorder.state}}" border="{{false}}" custom-class="cellclass" />
       <van-row custom-class="orderlist" >
         <van-col span="2" offset="1">
-          <van-image width="50" height="50" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+          <van-image width="50" height="50" src="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" />
         </van-col>
         <van-col span="11" offset="2" custom-class="orderlist1">
           <text class="ordertext1">{{comments[index].userorder.title}}</text>

@@ -3,9 +3,12 @@
   <view class="tupbox">图片</view>
   <swiper autoplay="{{true}}" interval="{{2000}}" duration="{{500}}">
     <block wx:for="{{background}}" wx:key="*this">
+    <view>
       <swiper-item>
         <image src="{{background[index]}}"></image>
       </swiper-item>
+      <text>{{index}}</text>
+    </view>
     </block>
   </swiper>
   <view class="textbox2">柳州科技馆</view>
@@ -22,7 +25,7 @@
         <view class="xingbox">
           <view class="xingxing">
             <view>
-              <van-rate size="16" color="rgb(253, 143, 0)" readonly value="{{ 4 }}" count="4" bind:change="onChange" />
+              <van-rate size="16" color="rgb(253, 143, 0)" readonly value="{{ 4 }}" count="4"/>
             </view>
             <text class="text5">人气值</text>
           </view>
@@ -96,21 +99,21 @@
   custom-style="height:70%;">
   <view>
     <view class="popuptitlebox">
-      <van-image image-class="popupimg" width="80" height="80" src="https://img.yzcdn.cn/vant/cat.jpeg" />
-      <text>8月19号入馆门票</text>
+      <van-image image-class="popupimg" width="80" height="80" src="{{goodsUrl}}" />
+      <text>{{popupDate[0]}}号入馆门票</text>
     </view>
     <view class="popupbox">
       <view class="contenttitle">
         <text>预定时间</text>
         <view class="datebox">
           <view>√</view>
-          可预定08月19日的票
+          可预定{{popupDate[1]}}的票
         </view>
         <view>如需预定，您最晚需在游玩当天23：59前下单，请尽早预定。</view>
       </view>
       <view class="content" >
         <text>柳州科技馆参观须知</text>
-        <text decode>
+        <text decode user-select>
           一、开馆时间
           2020年12月31日起正式对外开放:
           &nbsp;&nbsp;(一)每周三至周日9:30至16:30开馆(16:00后停止入馆)。
@@ -118,7 +121,7 @@
           &nbsp;&nbsp;(三)国家法定节假日开馆时间另行安排。二、开放范围
           一至四层为常设展厅,正常开放。其中天文气象展区、沉浸式超感体验区、柳州寻梦、科普剧场及空间相对密闭的展项在新冠肺炎疫情期间暂停开放。
           三、参观方式
-          <text style="color:red;">1.本馆实行免费开放，预约参观，所有观众均须凭票入馆参观。1.2米以下儿童和免票办法规定的情况除外。</text>
+          <text style="color:red;">1.本馆实行免费开放，预约参观，所有观众均须凭票入馆参观。1.2米以下儿童和免票办法规定的情况除外。</text >
           2.在做好新冠肺炎疫情防控的基础上，适度接待公益性团体(非营利性社会组织或团体)，暂停全程及区域讲解、暂时取消展厅部分专题教育体验活动。团体（20人以上成团)参观须提前至少两个工作日向科技馆预约登记,预约方式见“柳州科技馆”微信公众号。周六周日、法定节假日、学生寒假暑假期间不接待团体预约参观。团体预约电话:0772-2612107，预约时间:周三至周日9:30-16:30。
 
           四、门票预约流程
