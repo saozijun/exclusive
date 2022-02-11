@@ -8,8 +8,8 @@ Page({
     }
   },
   data: {
-    background: ['cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner1.jpg' || '../../images/banner1.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner2.jpg' || '../../images/banner2.jpg', 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/banner3.jpg' || '../../images/banner3.jpg'], //轮播图数组
-    goodsUrl: 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg' ||'../../images/luosifen.jpg',  //商品图片
+    background: ['../../images/banner1.jpg', '../../images/banner2.jpg', '../../images/banner3.jpg'], //轮播图数组
+    goodsUrl: '../../images/banner1.jpg',  //商品图片
     title: [],  //商品标题
     show:true,  //判断是否登录
     sheetShow:false,   //显示隐藏预定须知

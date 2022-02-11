@@ -34,7 +34,7 @@ Page({
       data: {
         // 表示将 done 字段置为 true
         userorder: {
-          state: '待评价'
+          state: 3
         }
       },
       success: (res) => {

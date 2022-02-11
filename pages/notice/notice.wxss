@@ -1,6 +1,6 @@
 /* pages/notice/notice.wxss */
 page{
-  background-color: rgb(242, 249, 255);
+  background-color: rgba(243, 243, 243, 0.288);
 }
 .van-cell .van-icon{
   color: rgb(0, 185, 62) !important;

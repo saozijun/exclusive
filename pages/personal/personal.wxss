@@ -1,6 +1,6 @@
 /* pages/personal/personal.wxss */
 page{
-  background-color: rgb(242, 249, 255);
+  background-color: rgba(243, 243, 243, 0.288);
 }
 .head{
   width: 95%;
@@ -62,8 +62,11 @@ page{
   height: 120px;
   background-color: #fff;
 }
+.van-button--normal {
+  width: 500rpx;
+  border-radius: 50rpx !important;
+}
 .btn{
-  border-radius: 10px;
   position: relative;
   display: block;
   text-align: center;

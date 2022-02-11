@@ -1,6 +1,6 @@
 /* pages/details/details.wxss */
 page{
-  background-color: rgba(221, 240, 255, 0.842);
+  background-color: rgba(243, 243, 243, 0.288);
 }
 .datailstopbox1{
   position: relative;

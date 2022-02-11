@@ -1,6 +1,6 @@
 /* pages/game/game.wxss */
 page{
-  background-color: rgb(242, 249, 255);
+  background-color: rgba(243, 243, 243, 0.288);
 }
 swiper{
   height: 220px;
@@ -215,16 +215,18 @@ van-popup .popupbox {
 }
 .popuptitlebox{
   width: 100%;
+  z-index: 999;
   height: 45rpx;
   position: fixed;
   background-color: #fff;
   padding: 15px 0px;
 }
 .popupimg{
-  border: 2px solid #fff;
+  border: 6rpx solid #fff;
   position: relative;
   left: 30rpx;
   top: -100rpx;
+  border-radius: 150rpx;
 }
 .popuptitlebox text{
   position: absolute;

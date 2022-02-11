@@ -1,72 +1,78 @@
 {
-  "setting": {},
-  "condition": {
-    "plugin": {
-      "list": []
-    },
-    "game": {
-      "list": []
-    },
-    "gamePlugin": {
-      "list": []
-    },
-    "miniprogram": {
-      "list": [
-        {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
-          "query": "",
-          "scene": null
+    "setting": {},
+    "condition": {
+        "plugin": {
+            "list": []
         },
-        {
-          "name": "pages/order/order",
-          "pathName": "pages/order/order",
-          "query": "",
-          "scene": null
+        "game": {
+            "list": []
         },
-        {
-          "name": "pages/problem/problem",
-          "pathName": "pages/problem/problem",
-          "query": "",
-          "scene": null
+        "gamePlugin": {
+            "list": []
         },
-        {
-          "name": "pages/personal/personal",
-          "pathName": "pages/personal/personal",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/details/details",
-          "pathName": "pages/details/details",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/security/security",
-          "pathName": "pages/security/security",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/evaluate/evaluate",
-          "pathName": "pages/evaluate/evaluate",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/orderdetails/orderdetails",
-          "pathName": "pages/orderdetails/orderdetails",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "pages/comment/comment",
-          "pathName": "pages/comment/comment",
-          "query": "",
-          "scene": null
+        "miniprogram": {
+            "list": [
+                {
+                    "name": "pages/personal/personal",
+                    "pathName": "pages/personal/personal",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/order/order",
+                    "pathName": "pages/order/order",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/problem/problem",
+                    "pathName": "pages/problem/problem",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/personal/personal",
+                    "pathName": "pages/personal/personal",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/details/details",
+                    "pathName": "pages/details/details",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/security/security",
+                    "pathName": "pages/security/security",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/evaluate/evaluate",
+                    "pathName": "pages/evaluate/evaluate",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/orderdetails/orderdetails",
+                    "pathName": "pages/orderdetails/orderdetails",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/comment/comment",
+                    "pathName": "pages/comment/comment",
+                    "query": "",
+                    "scene": null
+                },
+                {
+                    "name": "pages/details/details",
+                    "pathName": "pages/details/details",
+                    "query": "",
+                    "scene": null
+                }
+            ]
         }
-      ]
     }
-  }
 }

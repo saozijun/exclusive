@@ -1,4 +1,4 @@
 /* pages/evaluate/evaluate.wxss */
 page{
-  background-color: rgb(242, 249, 255);
+  background-color: rgba(243, 243, 243, 0.288);
 }

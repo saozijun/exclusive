@@ -46,7 +46,7 @@
 <view class="ticketbox">
   <view class="xbox1">
     <i class="iconfont icon-huochepiao"></i>
-    <text>门票</text>
+    <text>条件</text>
   </view>
 </view>
 <van-tabs sticky nav-class="gametabbox" ellipsis="{{false}}" line-width="0px" custom-class="custom-class">
@@ -73,7 +73,7 @@
   <van-tab title="普通票">
     <block wx:for="{{title}}" wx:key="index">
       <van-card price="免费" title="{{title[index]}}"
-        thumb="cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg" currency="">
+        thumb="{{goodsUrl}}" currency="">
         <view slot="footer">
           <van-button size="mini" bindtap="todetails" data-value="{{title[index]}}">立即预定</van-button>
         </view>
@@ -99,7 +99,7 @@
   custom-style="height:70%;">
   <view>
     <view class="popuptitlebox">
-      <van-image image-class="popupimg" width="80" height="80" src="{{goodsUrl}}" />
+      <van-image image-class="popupimg" width="80" height="80" src="cloud://cloud1-9gor3jg0a7f2b30a.636c-cloud1-9gor3jg0a7f2b30a-1306416878/1111.jpg" />
       <text>{{popupDate[0]}}号入馆门票</text>
     </view>
     <view class="popupbox">

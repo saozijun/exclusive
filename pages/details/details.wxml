@@ -7,7 +7,7 @@
       <text>不可退</text>
     </view>
   </view>
-  <view class="datailstopblk3" bindtap="reserve">
+  <view class="datailstopblk3" bindtap="reserve2">
     <text>预订须知</text>
     <text class="iconfont icon-you"></text>
   </view>

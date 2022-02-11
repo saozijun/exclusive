@@ -16,7 +16,7 @@ Page({
     Newdate: '',
     buynumber: 1,
     sheetShow: false,
-    goodsUrl: 'cloud://cloud1-3gwhrat056f4c3bf.636c-cloud1-3gwhrat056f4c3bf-1306416878/image/luosifen.jpg' || '../../images/luosifen.jpg', //商品图片
+    goodsUrl: '../../images/luosifen.jpg', //商品图片
     popupDate: [] //须知日期
   },
   /**
@@ -46,54 +46,73 @@ Page({
     })
   },
   reserve: function (e) {
+    if(this.data.name == ''){
+      wx.showToast({
+        title: '请输入取票人',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if(this.data.phone == ''){
+      wx.showToast({
+        title: '请输入手机号',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if(this.data.card == ''){
+      wx.showToast({
+        title: '请输入身份证号码',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     const date = new Date()
     let day = date.getDay();
     let weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-    if (this.data.name != "" && this.data.phone != "" && this.data.card != "") {
-      // 存用户的下单信息
-      wx.cloud.callFunction({
-        name: 'addorder',
-        data: {
-          userorder: {
-            title: this.data.title, //票的主题
-            name: this.data.name, //用户的姓名
-            phone: this.data.phone, //用户的手机号
-            card: this.data.card, //用户的身份证
-            cost: this.data.cost, //票的费用
-            state: '待使用', //票的状态
-            buynumber: this.data.buynumber, //买的票数量
-            week: weeks[day], //周几下的单
-            ordernumber: Utils.formatTime2(date), //订单编号
-            time: new Date() //下单时间
-          }
-        },
-        success: res => {
-          console.log(res)
+    // 存用户的下单信息
+    console.log('resss')
+    wx.cloud.callFunction({
+      name: 'addorder',
+      data: {
+        userorder: {
+          title: this.data.title, //票的主题
+          name: this.data.name, //用户的姓名
+          phone: this.data.phone, //用户的手机号
+          card: this.data.card, //用户的身份证
+          cost: this.data.cost, //票的费用
+          state: 1, //票的状态 1待预定 2待使用 3待评价
+          buynumber: this.data.buynumber, //买的票数量
+          week: weeks[day], //周几下的单
+          ordernumber: Utils.formatTime2(date), //订单编号
+          time: new Date() //下单时间
         }
-      })
+      },
+      success: res => {
+        console.log('resss',res)
+      }
+    })
 
-      wx.showToast({
-        title: '预订成功',
-        icon: 'success',
-        duration: 2000
+    wx.showToast({
+      title: '预订成功',
+      icon: 'success',
+      duration: 2000
+    })
+    setTimeout(() => {
+      wx.switchTab({
+        url: '/order'
       })
-      setTimeout(() => {
-        wx.navigateBack()
-      }, 1000)
-    } else {
-      wx.showToast({
-        title: '预订失败',
-        icon: 'success',
-        duration: 2000
-      })
-    }
+    }, 1000)
   },
   onOverlay(e) {
     this.setData({
       sheetShow: false
     })
   },
-  reserve(e) {
+  reserve2(e) {
     //获取当前时间
     let dateTime = new Date()
     //给当前时间加一天
@@ -119,7 +138,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**
