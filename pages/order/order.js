@@ -29,15 +29,15 @@ Page({
     }, 1000)
   },
   tabsChange:function(e){
-    wx.showLoading({
-      title: '加载中',
-    })
     this.setData({
       order:[],
       index:e.detail.index
     })
     console.log(e)
     if(this.data.show){
+      wx.showLoading({
+        title: '加载中',
+      })
       this.getOrder(this.data.index)
     }else{
       this.setData({
@@ -110,13 +110,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.showLoading({
-      title: '加载中',
-    })
     this.setData({
       show:wx.getStorageSync('userInfo')!=""?true:false
     })
     if(this.data.show){
+      wx.showLoading({
+        title: '加载中',
+      })
       this.getOrder(this.data.index)
     }else{
       this.setData({
