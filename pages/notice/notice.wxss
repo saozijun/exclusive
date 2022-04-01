@@ -1,26 +1,4 @@
 /* pages/notice/notice.wxss */
 page{
-  background-color: rgba(243, 243, 243, 0.288);
-}
-.van-cell .van-icon{
-  color: rgb(0, 185, 62) !important;
-  font-size: 40rpx;
-}
-.top,.buttom{
-  padding: 0 20rpx;
-  font-size: 24rpx;
-}
-.buttom{
-  padding-bottom:20rpx;
-  margin-bottom: 20rpx;
-}
-.buttom-notice{
-  margin-top:90rpx;
-}
-.buttom-notice-title{
-  font-size: 35rpx;
-  margin: 0 0 150rpx 50rpx;
-}
-.tilleb{
-  padding: 100rpx 0;
+  background-color: #EBEDF0;
 }

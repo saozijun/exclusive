@@ -1,4 +1,38 @@
 /* pages/problem/problem.wxss */
 page{
-  background-color: rgba(243, 243, 243, 0.288);
+  background-color: #EBEDF0;
+}
+.item_box{
+  width: 95%;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 15px auto;
+    padding: 15px;
+    font-size: 15px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: -1px 9px 11px 0px rgb(255 170 170 / 23%);
+}
+.item_box .item_box_r{
+  background-image: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+  color: #ffffff;
+  border-radius: 50rpx;
+  height: 66rpx;
+  width: 134rpx;
+  text-align: center;
+  line-height: 66rpx;
+  font-size: 28rpx;
+}
+.item_box_l{
+  margin-left: 20px;
+  font-size: 15px;
+  margin-top: 10px;
+  color: #da9125;
+}
+.item_box_l view:nth-child(2){
+  font-size: 13px;
+  color: #656C74;
+  margin-top: 5px;
 }

@@ -1,21 +1,97 @@
-/* pages/game/game.wxss */
+/* pages/personal/personal.wxss */
 page{
-  background-color: rgba(243, 243, 243, 0.445);
+  background-color: #EBEDF0;
 }
-.box_title{
-    width: 150px;
-    height: 45px;
-    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
-    text-align: center;
-    line-height: 45px;
-    border-radius: 5px;
-    font-size: 15px;
-    margin: 20px auto;
-    color: rgb(255, 255, 255);
+.head{
+  width: 95%;
+  height: 100px;
+  margin: 20px auto;
+  background-image: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #fff;
+  z-index: 999;
+  font-size: 30rpx;
+  position: relative;
 }
-.box_title text{
-  margin-left: 5px;
+.head::after{
+  content: "";
+  width: 95%;
+  height: 100px;
+  border-radius: 10px;
+  background-image: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+  z-index: -1;
+  position: absolute;
+  top: 0%;
+  left: 0%;
 }
-/* .box_title .icon-bianji{
-  font-size: 30px;
-} */
+.functionbox{
+  width: 95%;
+  /* height: 400px; */
+  margin: 20px auto;
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 9px rgba(196, 196, 196, 0.096);
+}
+.function{
+  width: 95%;
+  height: 50px;
+  color: #303B47;
+  /* background-color: aquamarine; */
+  border-bottom: 1px solid rgb(216 216 216 / 25%);
+  margin: 5px auto;
+  line-height: 50px;
+}
+.function text{
+  font-size: 12px;
+}
+.function .iconfont{
+  color: rgb(0, 206, 45);
+  margin: 0 10px;
+  font-size: 20px;
+  position: relative;
+  top: 4rpx;
+}
+.function:last-child{
+  border:none;
+}
+.portrait{
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: azure;
+  margin: 0 20px;
+}
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.block {
+  width: 120px;
+  height: 120px;
+  background-color: #fff;
+}
+.van-button--normal {
+  width: 500rpx;
+  border-radius: 50rpx !important;
+}
+.btn{
+  width: 200px;
+  height: 50px;
+  border-radius: 50px;
+  text-align: center;
+  line-height: 50px;
+  color: #fff;
+  margin: 0 auto;
+  background-image: linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%);
+  box-shadow: -1px 9px 11px 0px rgb(228 49 49 / 23%);
+  transition: .5s all;
+}
+.btn:hover{
+  background-image: linear-gradient(to right, #faae81 0%, #fc99aa 100%);
+}

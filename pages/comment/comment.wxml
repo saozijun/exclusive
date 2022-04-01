@@ -1,23 +1,14 @@
-<!--pages/comment/comment.wxml-->
-<view class="content">
-<view>
-  <text>总体评分：</text>
-  <van-rate value="{{ value }}" bind:change="onChange" />
-</view>
-<view>
-  <van-cell-group>
-  <van-field
-    value="{{ message }}"
-    label="商品评价"
-    type="textarea"
-    bind:input="onInput"
-    placeholder="请输入评论"
-    autosize
-    maxlength="100"
-    show-word-limit
-    border="{{ false }}"
-  />
-</van-cell-group>
-</view>
-<van-button type="primary" bind:click="usenow">立即评论</van-button>
+<!--pages/problem/problem.wxml-->
+<view class="box">
+    <view class="item_box"  wx:for="{{[1,2,3]}}" wx:key="index">
+        <view style="display: flex;">
+            <van-image class="portrait" round width="70" height="70" src="" />
+            <view class="item_box_l">
+                <view>跑步30min</view>
+                <view>价值鸡分:300</view>
+            </view>
+        </view>
+        <view class="item_box_r">编辑</view>
+    </view>
+    <view class="btn" bindtap="getUserInfo">添加</view>
 </view>

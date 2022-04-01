@@ -6,63 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: {},
-    getuserbtn: true
+    fileList: [],
   },
-  //获取用户信息
-  getUserInfo: function (e) {
-    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        this.setData({
-          userInfo: res.userInfo,
-          getuserbtn: false
-        })
-        console.log(this.data.userInfo)
-        //存当前用户
-        wx.setStorageSync('userInfo', res.userInfo)
-        //把用户信息存到数据库
-        db.collection('userInfos').where({}).get({
-          success: res=> {
-            console.log(res.data)
-            wx.cloud.callFunction({
-              name: 'add',
-              data:{userInfo:this.data.userInfo,res:res.data},
-              success: res=>{
-                console.log(res)
-              }
-            })
-          }
-        })
-        //用户登录过期时间
-        let timestamp = Date.parse(new Date());
-        let expiration = timestamp + 25920000; //259200秒（3天）
-        wx.setStorageSync('expiration', expiration)
-      }
-    })
-  },
-  secede: function (e) {
-    this.setData({
-      userInfo: {},
-      getuserbtn: true
-    })
-    wx.clearStorageSync()
-  },
-  toproblem: function (e) {
-    wx.navigateTo({
-      url: '/pages/problem/problem',
-    })
-  },
-  tophone: function (e) {
-    wx.makePhoneCall({
-      phoneNumber: '17677350137' //仅为示例，并非真实的电话号码
-    })
-  },
-  tosecurity: function (e) {
-    wx.navigateTo({
-      url: '/pages/security/security?userInfo=' + JSON.stringify(this.data.userInfo),
-    })
+  afterRead(event) {
+    const { file } = event.detail;
+    console.log(file)
+    this.setData({ fileList:[{url:file.url}] });
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    // wx.uploadFile({
+    //   url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+    //   filePath: file.url,
+    //   name: 'file',
+    //   formData: { user: 'test' },
+    //   success(res) {
+    //     // 上传完成需要更新 fileList
+    //     const { fileList = [] } = this.data;
+    //     fileList.push({ ...file, url: res.data });
+    //     this.setData({ fileList });
+    //   },
+    // });
   },
   /**
    * 生命周期函数--监听页面加载
@@ -82,13 +44,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // console.log(wx.getStorageSync('userInfo'))
-    if (wx.getStorageSync('userInfo') != "") {
-      this.setData({
-        userInfo: wx.getStorageSync('userInfo'),
-        getuserbtn: false
-      })
-    }
+
   },
 
   /**

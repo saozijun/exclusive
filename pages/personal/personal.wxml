@@ -1,27 +1,12 @@
 <!--pages/personal/personal.wxml-->
-
-<View class="head">
-  <!-- <image class="portrait"></image> -->
-  <van-image class="portrait" round width="70" height="70" src="{{userInfo.avatarUrl}}" />
-  <text>{{userInfo.nickName}}</text>
-</View>
-<View class="functionbox">
-  <view class="function" bindtap="toproblem">
-    <i class="iconfont icon-gantanhaoyuan"></i>
-    <text>常见问题</text>
+<view>
+  <view class="box">
+    <van-field value="{{}}" label="任务内容" placeholder="请输入任务内容" input-class="input-class" bind:input="getuser" data-value="name" />
+    <van-field value="{{}}" border="{{ false }}" type="number" label="任务鸡分" placeholder="请输入任务鸡粉" bind:input="getuser" data-value="phone" />
   </view>
-  <view class="function" bindtap="tosecurity">
-    <i class="iconfont icon-gerendaiban"></i>
-    <text>账号与安全</text>
-  </view>
-  <view class="function" bindtap="tophone">
-    <i class="iconfont icon-dianhua"></i>
-    <text>咨询电话</text>
-  </view>
-</View>
-<block wx:if="{{getuserbtn}}">
-  <van-button type="primary" class="btn" bind:click="getUserInfo">登录</van-button>
-</block>
-<block wx:else>
-  <van-button type="primary" class="btn" bind:click="secede">退出登录</van-button>
-</block>
+  <view class="img">
+      <view style="margin-bottom: 10px;">任务图片</view>
+      <van-uploader file-list="{{ fileList }}" bind:after-read="afterRead" max-count="1" ></van-uploader>
+    </view>
+  <view class="btn" bindtap="getUserInfo">添加</view>
+</view>

@@ -11,28 +11,6 @@
     "pages/orderdetails/orderdetails",
     "pages/comment/comment"
   ],
-  "tabBar": {
-    "list": [
-      {
-        "iconPath": "/images/shouye.png",
-        "selectedIconPath": "/images/shouye2.png",
-        "pagePath": "pages/home/home",
-        "text": "首页"
-      },
-      {
-        "iconPath": "/images/order2.png",
-        "selectedIconPath": "/images/order.png",
-        "pagePath": "pages/order/order",
-        "text": "订单"
-      },
-      {
-        "iconPath": "/images/personal2.png",
-        "selectedIconPath": "/images/personal.png",
-        "pagePath": "pages/personal/personal",
-        "text": "我的"
-      }
-    ]
-  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
@@ -62,6 +40,7 @@
     "van-row": "@vant/weapp/row/index",
     "van-col": "@vant/weapp/col/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
-    "van-popup": "@vant/weapp/popup/index"
+    "van-popup": "@vant/weapp/popup/index",
+    "van-uploader": "@vant/weapp/uploader/index"
   }
 }

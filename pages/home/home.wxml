@@ -1,7 +1,30 @@
-<!--pages/game/game.wxml-->
-<view class="box">
-    <view class="box_title" bindtap="addDiary">
-        <i class="iconfont icon-bianjibiaoge_o"></i>
-        <text>小日记</text>
-    </view>
-</view>
+<!--pages/personal/personal.wxml-->
+
+<View class="head">
+  <!-- <image class="portrait"></image> -->
+  <van-image wx:if="{{userInfo}}" class="portrait" round width="70" height="70" src="{{userInfo.avatarUrl}}" />
+  <text>{{userInfo.nickName}}</text>
+</View>
+<View class="functionbox">
+  <view class="function" bindtap="toproblem">
+    <text>完成任务</text>
+  </view>
+  <view class="function" bindtap="tosecurity">
+    <text>兑换奖励</text>
+  </view>
+  <view class="function" bindtap="tophone">
+    <text>查询记录</text>
+  </view>
+  <view class="function"  bindtap="tocomment">
+    <text>任务管理</text>
+  </view>
+  <view class="function">
+    <text>奖励管理</text>
+  </view>
+</View>
+<block wx:if="{{getuserbtn}}">
+  <view class="btn" bindtap="getUserInfo">登录</view>
+</block>
+<block wx:else>
+  <view class="btn" bindtap="secede">退出登录</view>
+</block>
