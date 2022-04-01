@@ -1,6 +1,6 @@
 <!--pages/game/game.wxml-->
 <view class="box">
-    <view class="box_title">
+    <view class="box_title" bindtap="addDiary">
         <i class="iconfont icon-bianjibiaoge_o"></i>
         <text>小日记</text>
     </view>

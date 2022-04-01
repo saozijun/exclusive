@@ -4,14 +4,14 @@ page{
 }
 .box_title{
     width: 150px;
-    height: 50px;
-    background-color: #fff;
+    height: 45px;
+    background-image: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     text-align: center;
-    line-height: 50px;
-    border-radius: 10px;
+    line-height: 45px;
+    border-radius: 5px;
     font-size: 15px;
     margin: 20px auto;
-    color: rgb(235, 134, 134);
+    color: rgb(255, 255, 255);
 }
 .box_title text{
   margin-left: 5px;
