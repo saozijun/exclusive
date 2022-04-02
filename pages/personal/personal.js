@@ -111,11 +111,12 @@ Page({
   },
   addcl(userorder){
     const {id} = this.data
+    console.log('userorder',userorder)
     if(id){
       db.collection('order').doc(id).update({
         data:{userorder},
         success(res){
-          console.log("数据修改成功")
+          console.log("数据修改成功",res)
           wx.showToast({
             title: '保存成功',
             duration: 500

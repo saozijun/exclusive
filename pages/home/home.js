@@ -124,6 +124,7 @@ Page({
         getuserbtn: false
       })
     }
+    this.getInfo()
     this.setData({info:wx.getStorageSync('info') || null})
   },
 
