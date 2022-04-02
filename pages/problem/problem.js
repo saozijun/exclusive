@@ -1,11 +1,14 @@
 // pages/problem/problem.js
+const db = wx.cloud.database()
+var util = require("../../utils/util");
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    info:wx.getStorageSync('info') || null,
+    list:[]
   },
 
   /**
@@ -26,7 +29,56 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.getOrder()
+  },
+  complete(e){
+    console.log(e.currentTarget.dataset.id)
+    const {id,item} = e.currentTarget.dataset
+    const {info} = this.data
+    const that = this
+    if(!item.status) return
+    db.collection('order').doc(id).update({
+      data:{userorder:{status:!item.status}},
+      success(res){
+        wx.showToast({
+          title: `太棒啦，鸡分+${item.number}`,
+          icon:'none',
+          duration: 2000
+        })
+        db.collection('order').get({
+          success: res2=> {
+            console.log('res2----',res2)
+            that.setData({list:res2.data})
+          }
+        })
+        db.collection('userInfos').doc(info._id).update({
+          data:{integral:parseInt(info.integral)+parseInt(item.number)},
+          success(res){
+            console.log('res---',res)
+            util.getInfo()
+          }
+        })
+      }
+    })
+  },
+  getOrder(index){
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      success: res=>{
+        db.collection('order').get({
+          success: res2=> {
+            console.log('res2----',res2)
+            this.setData({list:res2.data})
+            setTimeout(function () {
+              wx.hideLoading()
+            }, 1)
+          }
+        })
+      }
+    })
   },
 
   /**

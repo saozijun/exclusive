@@ -3,22 +3,23 @@
 <View class="head">
   <!-- <image class="portrait"></image> -->
   <van-image wx:if="{{userInfo}}" class="portrait" round width="70" height="70" src="{{userInfo.avatarUrl}}" />
-  <text>{{userInfo.nickName}}</text>
+  <text style="margin-right:20px">{{userInfo.nickName}}</text>
+  <text wx:if="{{info}}">积分：{{info.integral}}</text>
 </View>
-<View class="functionbox">
+<View class="functionbox" wx:if="{{info}}">
   <view class="function" bindtap="toproblem">
     <text>完成任务</text>
   </view>
   <view class="function" bindtap="tosecurity">
     <text>兑换奖励</text>
   </view>
-  <view class="function" bindtap="tophone">
+  <view class="function" bindtap="toevaluate">
     <text>查询记录</text>
   </view>
   <view class="function"  bindtap="tocomment">
     <text>任务管理</text>
   </view>
-  <view class="function">
+  <view class="function" bindtap="tonotice">
     <text>奖励管理</text>
   </view>
 </View>

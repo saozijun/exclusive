@@ -1,4 +1,6 @@
 // pages/security/security.js
+const db = wx.cloud.database()
+var util = require("../../utils/util");
 Page({
 
   /**
@@ -6,20 +8,31 @@ Page({
    */
   data: {
     userInfo: {},
+    info:wx.getStorageSync('info') || null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.userInfo))
-    if(JSON.stringify(options) != '{}'){
-      this.setData({
-        userInfo:JSON.parse(options.userInfo)
-      })
-    }
+    
   },
-
+  getOrder(index){
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      success: res=>{
+        db.collection('reward').get({
+          success: res2=> {
+            console.log('res2----',res2)
+            this.setData({list:res2.data})
+            setTimeout(function () {
+              wx.hideLoading()
+            }, 1)
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -31,9 +44,49 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.getOrder()
   },
-
+  duihuan(e){
+    console.log(e.currentTarget.dataset.id)
+    const {id,item} = e.currentTarget.dataset
+    const {info} = this.data
+    const that = this
+    if(!item.status) return
+    if(info.integral<item.number){
+      wx.showToast({
+        title: `鸡分不足呀，多做任务`,
+        icon:'none',
+        duration: 2000
+      })
+      return
+    }
+    db.collection('reward').doc(id).update({
+      data:{rewardList:{status:!item.status}},
+      success(res){
+        wx.showToast({
+          title: `兑换成功，鸡分-${item.number}`,
+          icon:'none',
+          duration: 2000
+        })
+        db.collection('reward').get({
+          success: res2=> {
+            console.log('res2----',res2)
+            that.setData({list:res2.data})
+          }
+        })
+        db.collection('userInfos').doc(info._id).update({
+          data:{integral:parseInt(info.integral)-parseInt(item.number)},
+          success(res){
+            console.log('res---',res)
+            util.getInfo()
+          }
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

@@ -1,42 +1,40 @@
-// pages/details/details.js
-const Utils = require('../../utils/util')
+// pages/personal/personal.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    value: '',
-    title: '',
-    name: '',
-    phone: '',
-    card: '',
-    cost: '免费',
-    ticketnumber: 100,
-    Newdate: '',
-    buynumber: 1,
-    sheetShow: false,
-    goodsUrl: '../../images/luosifen.jpg', //商品图片
-    popupDate: [] //须知日期
+    fileList: [],
+    cloudPath:'',
+    type:false,
+    name:'',
+    number:'',
+    id:null,
+  },
+  afterRead(event) {
+    const { file } = event.detail;
+    console.log(file)
+    this.setData({ fileList:[{url:file.url}] });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const date = new Date()
-    let dateTemp = date.setDate(date.getDate() + 1)
-    if (options != "") {
+    const item = options.item?JSON.parse(options.item):false
+    console.log('item',item)
+    if(item){
       this.setData({
-        title: options.value,
-        Newdate: Utils.formatTime(new Date(dateTemp)),
-        tomorrow: Utils.formatTime(new Date(dateTemp)).slice(5)
+        name:item.rewardList.name,
+        number:item.rewardList.number,
+        id:item._id,
       })
+      if(item.rewardList.url!=""){
+        this.setData({fileList:[{url:item.rewardList.url}]})
+      }
     }
-  },
-  buynumber: function (e) {
-    this.setData({
-      buynumber: e.detail
-    })
+    this.setData({type:item?true:false})
   },
   getuser: function (e) {
     const value = e.currentTarget.dataset.value
@@ -45,87 +43,103 @@ Page({
       [value]: e.detail
     })
   },
-  reserve: function (e) {
-    if(this.data.name == ''){
+  delImg(){
+    this.setData({fileList:[]})
+  },
+  addDiray(){
+    const {fileList,name,number} = this.data
+    console.log(111)
+    if(name == ''){
       wx.showToast({
-        title: '请输入取票人',
+        title: '请输入奖励内容',
         icon: 'none',
         duration: 2000
       })
       return
     }
-    if(this.data.phone == ''){
+    if(number == ''){
       wx.showToast({
-        title: '请输入手机号',
+        title: '请输入所需鸡分',
         icon: 'none',
         duration: 2000
       })
       return
     }
-    if(this.data.card == ''){
-      wx.showToast({
-        title: '请输入身份证号码',
-        icon: 'none',
-        duration: 2000
+    if(fileList.length>0){
+      wx.cloud.uploadFile({
+        cloudPath: `my-photo${Date.now()}.png`,
+        filePath: fileList[0].url
+      }).then(data => {
+        console.log('data-----',data)
+        this.addcl({
+          name:name,
+          number:number,
+          status:true,
+          url:data.fileID
+        })
       })
-      return
+      .catch(e => {
+        wx.showToast({ title: '上传失败', icon: 'none' });
+        console.log(e);
+      });
+    }else{
+      this.addcl({
+        name:name,
+        number:number,
+        status:true,
+        url:""
+      })
     }
-    const date = new Date()
-    let day = date.getDay();
-    let weeks = new Array("星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六");
-    // 存用户的下单信息
-    console.log('resss')
-    wx.cloud.callFunction({
-      name: 'addorder',
-      data: {
-        userorder: {
-          title: this.data.title, //票的主题
-          name: this.data.name, //用户的姓名
-          phone: this.data.phone, //用户的手机号
-          card: this.data.card, //用户的身份证
-          cost: this.data.cost, //票的费用
-          state: 1, //票的状态 1待预定 2待使用 3待评价
-          buynumber: this.data.buynumber, //买的票数量
-          week: weeks[day], //周几下的单
-          ordernumber: Utils.formatTime2(date), //订单编号
-          time: new Date() //下单时间
-        }
-      },
-      success: res => {
-        console.log('resss',res)
+  },
+  delDiray(e){
+    const {id} = this.data
+    console.log('id---',id)
+    db.collection('reward').doc(id).remove({
+      success(res){
+        console.log("数据删除成功",res)
+        wx.showToast({
+          title: '删除成功',
+          duration: 500
+        })
+        setTimeout(()=>{
+          wx.navigateBack()
+        },1000)
       }
     })
-
-    wx.showToast({
-      title: '预订成功',
-      icon: 'success',
-      duration: 2000
-    })
-    setTimeout(() => {
-      wx.switchTab({
-        url: '/order'
+  },
+  addcl(rewardList){
+    const {id} = this.data
+    if(id){
+      db.collection('reward').doc(id).update({
+        data:{rewardList},
+        success(res){
+          wx.showToast({
+            title: '保存成功',
+            duration: 500
+          })
+          setTimeout(()=>{
+            wx.navigateBack()
+          },1000)
+        }
       })
-    }, 1000)
-  },
-  onOverlay(e) {
-    this.setData({
-      sheetShow: false
-    })
-  },
-  reserve2(e) {
-    //获取当前时间
-    let dateTime = new Date()
-    //给当前时间加一天
-    dateTime = dateTime.setDate(dateTime.getDate() + 1)
-    // console.log(dateTime)
-    //当前时间加一天
-    const date = new Date(dateTime)
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    this.setData({
-      sheetShow: true,
-      popupDate: [month + '月' + day, (month < 10 ? '0' + month : month) + '月' + day + '日']
-    })
+    }else{
+      wx.cloud.callFunction({
+        name: 'rewardList',
+        data: {
+          rewardList: rewardList
+        },
+        success: res => {
+          console.log('resss',res)
+          wx.showToast({
+            title: '添加成功',
+            duration: 500
+          })
+          setTimeout(()=>{
+            wx.navigateBack()
+          },1000)
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -138,7 +152,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+
   },
 
   /**

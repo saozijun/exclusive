@@ -73,6 +73,7 @@ Page({
         this.addcl({
           name:name,
           number:number,
+          status:true,
           url:data.fileID
         })
       })
@@ -84,40 +85,67 @@ Page({
       this.addcl({
         name:name,
         number:number,
+        status:true,
         url:""
       })
     }
   },
   delDiray(e){
-    const id = e.currentTarget.dataset.value
-    wx.cloud.callFunction({
-      name: 'delorder',
-      data: {id},
-      success: res => {
-        console.log('resss',res)
+    const {id} = this.data
+    console.log('id---',id)
+    db.collection('order').doc(id).remove({
+      success(res){
+        console.log("数据删除成功",res)
         wx.showToast({
           title: '删除成功',
-          icon: 'none',
-          duration: 2000
+          duration: 500
         })
+        setTimeout(()=>{
+          wx.navigateBack()
+        },1000)
+      },
+      fail(res){
+        console.log("数据删除失败",res)
       }
     })
   },
   addcl(userorder){
-    wx.cloud.callFunction({
-      name: 'addorder',
-      data: {
-        userorder: userorder
-      },
-      success: res => {
-        console.log('resss',res)
-        wx.showToast({
-          title: '添加成功',
-          icon: 'none',
-          duration: 2000
-        })
-      }
-    })
+    const {id} = this.data
+    if(id){
+      db.collection('order').doc(id).update({
+        data:{userorder},
+        success(res){
+          console.log("数据修改成功")
+          wx.showToast({
+            title: '保存成功',
+            duration: 500
+          })
+          setTimeout(()=>{
+            wx.navigateBack()
+          },1000)
+        },
+        fail(res){
+          console.log("数据修改失败")
+        }
+      })
+    }else{
+      wx.cloud.callFunction({
+        name: 'addorder',
+        data: {
+          userorder: userorder
+        },
+        success: res => {
+          console.log('resss',res)
+          wx.showToast({
+            title: '添加成功',
+            duration: 500
+          })
+          setTimeout(()=>{
+            wx.navigateBack()
+          },1000)
+        }
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

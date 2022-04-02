@@ -1,20 +1,49 @@
-// pages/notice/notice.js
+// pages/comment/comment.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[]
   },
-
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    
   },
-
+  getOrder(index){
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      success: res=>{
+        db.collection('reward').get({
+          success: res2=> {
+            console.log('res2----',res2)
+            this.setData({list:res2.data})
+            setTimeout(function () {
+              wx.hideLoading()
+            }, 1)
+          }
+        })
+      }
+    })
+  },
+  topersonal(e){
+    console.log(e)
+    const item =  e.currentTarget.dataset.item
+    if(item){
+      console.log('item--',item)
+      wx.navigateTo({
+        url: '/pages/details/details?item='+JSON.stringify(item),
+      })
+    }else{
+      wx.navigateTo({
+        url: '/pages/details/details',
+      })
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -26,7 +55,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
+    this.getOrder()
   },
 
   /**

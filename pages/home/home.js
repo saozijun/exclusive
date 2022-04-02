@@ -7,13 +7,15 @@ Page({
    */
   data: {
     userInfo: null,
-    getuserbtn: true
+    getuserbtn: true,
+    openId:null,
+    info:wx.getStorageSync('info') || null
   },
   //获取用户信息
   getUserInfo: function (e) {
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     wx.getUserProfile({
-      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      desc: '用于完善资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
       success: (res) => {
         this.setData({
           userInfo: res.userInfo,
@@ -23,45 +25,66 @@ Page({
         //存当前用户
         wx.setStorageSync('userInfo', res.userInfo)
         //把用户信息存到数据库
-        db.collection('userInfos').where({}).get({
-          success: res=> {
-            console.log(res.data)
+        db.collection('userInfos').get({
+          success: res2 => {
+            console.log(res2.data)
             wx.cloud.callFunction({
               name: 'add',
-              data:{userInfo:this.data.userInfo,res:res.data},
-              success: res=>{
-                console.log(res)
+              data: {
+                info: {
+                  userInfo: this.data.userInfo,
+                  res: res2.data
+                }
+              },
+              success: res3 => {
+                console.log(res3)
+                this.getInfo()
               }
             })
           }
         })
-        //用户登录过期时间
-        let timestamp = Date.parse(new Date());
-        let expiration = timestamp + 25920000; //259200秒（3天）
-        wx.setStorageSync('expiration', expiration)
+      }
+    })
+  },
+  getInfo() {
+    const {openId} = this.data
+    db.collection('userInfos').get({
+      success: res2 => {
+        const info =  res2.data.filter(item=>item._openid==openId)
+        wx.setStorageSync('info', info[0])
+        this.setData({info:info[0]})
       }
     })
   },
   secede: function (e) {
     this.setData({
       userInfo: null,
-      getuserbtn: true
+      getuserbtn: true,
+      info:null
     })
-    wx.clearStorageSync()
+    // wx.clearStorageSync()
+    wx.removeStorageSync('userInfo')
+    wx.removeStorageSync('info')
+    wx.removeStorageSync('logs')
   },
   toproblem: function (e) {
     wx.navigateTo({
       url: '/pages/problem/problem',
     })
   },
-  tophone: function (e) {
+  toevaluate: function (e) {
     wx.navigateTo({
-      url: '/pages/notice/notice',
+      url: '/pages/evaluate/evaluate',
     })
   },
   tocomment: function (e) {
     wx.navigateTo({
       url: '/pages/comment/comment',
+    })
+  },
+  tonotice: function (e) {
+    wx.navigateTo({
+      url: '/pages/notice/notice',
     })
   },
   tosecurity: function (e) {
@@ -73,7 +96,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.cloud.callFunction({
+      name: 'getOpenid',
+      success: res => {
+        console.log('openId',res)
+        this.setData({openId:res.result.openId})
+        wx.setStorageSync('openId', res.result.openId)
+      }
+    })
   },
 
   /**
@@ -94,6 +124,7 @@ Page({
         getuserbtn: false
       })
     }
+    this.setData({info:wx.getStorageSync('info') || null})
   },
 
   /**

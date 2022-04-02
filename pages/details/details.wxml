@@ -1,109 +1,13 @@
-<!--pages/details/details.wxml-->
-<view class="datailstopbox1">
-  <view class="datailstopblk">
-    <text>{{title}}</text>
-    <view class="datailstopblk2">
-      <text class="iconfont icon-chenggong"></text>
-      <text>不可退</text>
+<!--pages/personal/personal.wxml-->
+<view>
+  <view class="box">
+    <van-field value="{{name}}" label="奖励内容" placeholder="请输入奖励内容" input-class="input-class" bind:input="getuser" data-value="name" />
+    <van-field value="{{number}}" border="{{ false }}" type="number" label="所需鸡分" placeholder="请输入所需鸡分" bind:input="getuser" data-value="number" />
+  </view>
+  <view class="img">
+      <view style="margin-bottom: 10px;">奖励图片(非必传)</view>
+      <van-uploader  file-list="{{ fileList }}" bind:after-read="afterRead" bind:delete="delImg" max-count="1" ></van-uploader>
     </view>
-  </view>
-  <view class="datailstopblk3" bindtap="reserve2">
-    <text>预订须知</text>
-    <text class="iconfont icon-you"></text>
-  </view>
+    <view class="btn2" wx:if="{{type}}" bindtap="delDiray" data-value="{{item._id}}">删除</view>
+    <view class="btn" bindtap="addDiray">{{type?'保存':'添加'}}</view>
 </view>
-<view class="datailstopbox2">
-  <view class="fillbox1">
-    <text>{{cost}}</text>
-    <text class="sizeclass">还剩{{ticketnumber}}张</text>
-  </view>
-  <view class="fillbox2">
-    <text class="sizeclass">游玩日期</text>
-    <view class="fill">
-      <text>明天 {{tomorrow}}</text>
-      <text>还剩{{ticketnumber}}张</text>
-    </view>
-  </view>
-  <view class="fillbox3">
-    <text class="sizeclass">购买数量</text>
-    <van-stepper value="{{buynumber}}"custom-class="stepper" input-class="stepper-input"
-      plus-class="stepper-plus" minus-class="stepper-minus" disable-input bind:change="buynumber"/>
-  </view>
-  <view class="fillbox4">
-    <text class="sizeclass">{{Newdate}} 当日使用有效</text>
-  </view>
-</view>
-<view class="datailstopbox3">
-  <view class="box3blo1">
-    <text>取票人信息</text>
-  </view>
-  <van-field value="{{}}" label="取票人" placeholder="姓名" input-class="input-class" bind:input="getuser" data-value="name" />
-  <van-field value="{{}}" label="手机号" placeholder="用于接收确认短信" bind:input="getuser" data-value="phone" />
-  <van-field value="{{}}" label="身份证号码" border="{{false}}" bind:input="getuser" data-value="card" />
-</view>
-<van-button type="primary" custom-class="custom" bind:click="reserve">点击预订</van-button>
-
-<van-popup position="bottom" show="{{ sheetShow }}" bind:close="onOverlay" closeable bind:click-overlay="onOverlay"
-  custom-style="height:70%;">
-  <view>
-    <view class="popuptitlebox">
-      <van-image image-class="popupimg" width="80" height="80" src="{{goodsUrl}}" />
-      <text>{{popupDate[0]}}号入馆门票</text>
-    </view>
-    <view class="popupbox">
-      <view class="contenttitle">
-        <text>预定时间</text>
-        <view class="datebox">
-          <view>√</view>
-          可预定{{popupDate[1]}}的票
-        </view>
-        <view>如需预定，您最晚需在游玩当天23：59前下单，请尽早预定。</view>
-      </view>
-      <view class="content" >
-        <text>柳州科技馆参观须知</text>
-        <text decode>
-          一、开馆时间
-          2020年12月31日起正式对外开放:
-          &nbsp;&nbsp;(一)每周三至周日9:30至16:30开馆(16:00后停止入馆)。
-          &nbsp;&nbsp;(二)每周一、周二闭馆。
-          &nbsp;&nbsp;(三)国家法定节假日开馆时间另行安排。二、开放范围
-          一至四层为常设展厅,正常开放。其中天文气象展区、沉浸式超感体验区、柳州寻梦、科普剧场及空间相对密闭的展项在新冠肺炎疫情期间暂停开放。
-          三、参观方式
-          <text style="color:red;">1.本馆实行免费开放，预约参观，所有观众均须凭票入馆参观。1.2米以下儿童和免票办法规定的情况除外。</text>
-          2.在做好新冠肺炎疫情防控的基础上，适度接待公益性团体(非营利性社会组织或团体)，暂停全程及区域讲解、暂时取消展厅部分专题教育体验活动。团体（20人以上成团)参观须提前至少两个工作日向科技馆预约登记,预约方式见“柳州科技馆”微信公众号。周六周日、法定节假日、学生寒假暑假期间不接待团体预约参观。团体预约电话:0772-2612107，预约时间:周三至周日9:30-16:30。
-
-          四、门票预约流程
-          (一)个人观众通过关注“柳州科技馆”微信公众号，点击右下方“享·服务”，选择“网上预约”，进行门票预约。团体参观通过关注“柳州科技馆”微信公众号，点击右下方“享·服务”，选择“团体预约”，进行门票预约。
-          (二)每日16:00前可预约当日参观门票，16:00后可预约次日参观门票。新冠肺炎疫情期间每日限票1500张。
-          (三）为避免人群聚集,暂不提供现场预约或取票服务。
-          <text style="color:red;">(四)网上预约门票时须填报身份证号码进行实名登记，每张身份证最多可同时预约四张门票,持票人可在当日反复使用。</text>
-          五、验票参观流程
-          预约门票成功后将生成电子二维码（可通过门票预约系统中“订单”选项提取该二维码），入馆参观时须凭电子二维码通过闸机扫码入馆。
-          六、每日观众接待量
-          在新冠肺炎疫情防控期间，为避免人员过于密集和减少交叉感染风险，将实行参观人流管控。即常设展厅每日最大接待量1500人，最大瞬时接待量600人。后期视新冠肺炎疫情防控情况对人流限制动态进行调整将另行通知。
-          七、入馆参观须知及注意事项
-          <text style="color:red;">(一)持票人可在当日反复进出常设展厅，但需在二楼验票处加盖印章。</text>
-          (二)观众须全程佩戴口罩、携带本人身份证原件、出示健康码“绿码”、配合测量体温、安检后方可入馆。体温异常(≥37.3℃),或有咳嗽、呼吸急促等异常现象的观众谢绝入馆,并须配合工作人员按柳州市新冠肺炎疫情防控的相关要求进行处置。
-          (三)入馆观众请自觉排队并保持1.5米以上间隔，做好个人清洁和防护,文明参观。
-          (四)入馆观众应服从馆内工作人员的疏导管理，避免扎堆，有序参观。
-          (五)序厅服务台免费提供医用酒精、免洗洗手液、防疫宣传手册供观众使用。
-          (六)孕妇、儿童及70岁以上老人需要一名成年人持票陪同入馆。(七)场馆内各区域全面六个禁止:
-          <text style="color:red;">1.禁止在场馆内进食。
-            2.禁止携带宠物入馆。3.禁止吸烟(含电子烟)。
-            4.禁止在馆内追逐打闹、大声喧哗。
-            5.禁止在馆内随地吐痰、乱丢垃圾等杂物。6.禁止携带管制刀具、易燃易爆物品入馆。</text>
-          (七)相关信息变动更新,请关注“柳州科技馆”微信公众号。
-
-          八、免票办法
-          <text style="color:red;">70岁</text>
-          以上老年人本人、离休干部本人、残疾人士本人、烈士家属本人(含配偶及子女)，现役军人本人（可携带三位家属)，凭相关有效证件到服务前台登记，可享受免预约入馆参观。
-          九、交通信息
-          场馆地址:柳州市柳东新区文化广场A1区柳州科技馆。
-          交通∶乘坐快1路快速公交，到企业总部(柳东政务服务中心)站下车，步行800米到达。
-          咨询电话:0772-2612107
-          咨询时间:每周三至周日9:30～16:30。
-        </text>
-      </view>
-    </view>
-  </view>
-</van-popup>

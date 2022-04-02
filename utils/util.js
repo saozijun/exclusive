@@ -1,3 +1,4 @@
+const db = wx.cloud.database()
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -28,6 +29,15 @@ const formatTime3 = date => {
 
   return ((month<10?'0'+month:month)+'月'+(day<10?'0'+day:day)+'日')
 }
+const getInfo = () => {
+  const openId = wx.getStorageSync('openId')
+  db.collection('userInfos').get({
+    success: res2 => {
+      const info =  res2.data.filter(item=>item._openid==openId)
+      wx.setStorageSync('info', info[0])
+    }
+  })
+}
 
 const formatNumber = n => {
   n = n.toString()
@@ -37,5 +47,6 @@ const formatNumber = n => {
 module.exports = {
   formatTime,
   formatTime2,
-  formatTime3
+  formatTime3,
+  getInfo
 }

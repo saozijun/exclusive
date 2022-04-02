@@ -8,9 +8,9 @@ const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
   try {
-    return await db.collection('diaryList').add({
+    return await db.collection('reward').add({
       data: {
-        userorder: event.List,
+        rewardList: event.rewardList,
         _openid: wxContext.OPENID,
       }
     })

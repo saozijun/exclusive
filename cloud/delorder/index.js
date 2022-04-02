@@ -7,10 +7,9 @@ cloud.init({
 const db = cloud.database()
 exports.main = async (event, context) => {
   const wxContext = cloud.getWXContext()
+  console.log('event.id---',event.id)
   try {
-    return await db.collection('order').where({
-      _id: event.id
-    }).remove()
+    return await db.collection('order').doc(event.id).remove()
   } catch (e) {
     console.error(e)
   }
