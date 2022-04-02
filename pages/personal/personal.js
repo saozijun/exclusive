@@ -7,32 +7,118 @@ Page({
    */
   data: {
     fileList: [],
+    cloudPath:'',
+    type:false,
+    name:'',
+    number:'',
+    id:null,
   },
   afterRead(event) {
     const { file } = event.detail;
     console.log(file)
     this.setData({ fileList:[{url:file.url}] });
-    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
-    // wx.uploadFile({
-    //   url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
-    //   filePath: file.url,
-    //   name: 'file',
-    //   formData: { user: 'test' },
-    //   success(res) {
-    //     // 上传完成需要更新 fileList
-    //     const { fileList = [] } = this.data;
-    //     fileList.push({ ...file, url: res.data });
-    //     this.setData({ fileList });
-    //   },
-    // });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const item = options.item?JSON.parse(options.item):false
+    console.log('item',item)
+    if(item){
+      this.setData({
+        name:item.userorder.name,
+        number:item.userorder.number,
+        id:item._id,
+      })
+      if(item.userorder.url!=""){
+        this.setData({fileList:[{url:item.userorder.url}]})
+      }
+    }
+    this.setData({type:item?true:false})
   },
-
+  getuser: function (e) {
+    const value = e.currentTarget.dataset.value
+    // console.log(e.detail)
+    this.setData({
+      [value]: e.detail
+    })
+  },
+  delImg(){
+    this.setData({fileList:[]})
+  },
+  addDiray(){
+    if(this.data.name == ''){
+      wx.showToast({
+        title: '请输入任务内容',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    if(this.data.number == ''){
+      wx.showToast({
+        title: '请输入任务鸡分',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
+    const {fileList,name,number} = this.data
+    if(fileList.length>0){
+      wx.cloud.uploadFile({
+        cloudPath: `my-photo${Date.now()}.png`,
+        filePath: fileList[0].url
+      }).then(data => {
+        console.log('data-----',data)
+        this.addcl({
+          name:name,
+          number:number,
+          url:data.fileID
+        })
+      })
+      .catch(e => {
+        wx.showToast({ title: '上传失败', icon: 'none' });
+        console.log(e);
+      });
+    }else{
+      this.addcl({
+        name:name,
+        number:number,
+        url:""
+      })
+    }
+  },
+  delDiray(e){
+    const id = e.currentTarget.dataset.value
+    wx.cloud.callFunction({
+      name: 'delorder',
+      data: {id},
+      success: res => {
+        console.log('resss',res)
+        wx.showToast({
+          title: '删除成功',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
+  addcl(userorder){
+    wx.cloud.callFunction({
+      name: 'addorder',
+      data: {
+        userorder: userorder
+      },
+      success: res => {
+        console.log('resss',res)
+        wx.showToast({
+          title: '添加成功',
+          icon: 'none',
+          duration: 2000
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

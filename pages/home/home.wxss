@@ -34,6 +34,8 @@ page{
   border-radius: 10px;
   background-color: rgb(255, 255, 255);
   box-shadow: 1px 1px 9px rgba(196, 196, 196, 0.096);
+  padding: 0 10px;
+  box-sizing: border-box;
 }
 .function{
   width: 95%;
@@ -45,7 +47,7 @@ page{
   line-height: 50px;
 }
 .function text{
-  font-size: 12px;
+  font-size: 14px;
 }
 .function .iconfont{
   color: rgb(0, 206, 45);
