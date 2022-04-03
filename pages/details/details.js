@@ -7,34 +7,46 @@ Page({
    */
   data: {
     fileList: [],
-    cloudPath:'',
-    type:false,
-    name:'',
-    number:'',
-    id:null,
+    cloudPath: '',
+    type: false,
+    name: '',
+    number: '',
+    id: null,
   },
   afterRead(event) {
-    const { file } = event.detail;
+    const {
+      file
+    } = event.detail;
     console.log(file)
-    this.setData({ fileList:[{url:file.url}] });
+    this.setData({
+      fileList: [{
+        url: file.url
+      }]
+    });
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    const item = options.item?JSON.parse(options.item):false
-    console.log('item',item)
-    if(item){
+    const item = options.item ? JSON.parse(options.item) : false
+    console.log('item', item)
+    if (item) {
       this.setData({
-        name:item.rewardList.name,
-        number:item.rewardList.number,
-        id:item._id,
+        name: item.rewardList.name,
+        number: item.rewardList.number,
+        id: item._id,
       })
-      if(item.rewardList.url!=""){
-        this.setData({fileList:[{url:item.rewardList.url}]})
+      if (item.rewardList.url != "") {
+        this.setData({
+          fileList: [{
+            url: item.rewardList.url
+          }]
+        })
       }
     }
-    this.setData({type:item?true:false})
+    this.setData({
+      type: item ? true : false
+    })
   },
   getuser: function (e) {
     const value = e.currentTarget.dataset.value
@@ -43,13 +55,19 @@ Page({
       [value]: e.detail
     })
   },
-  delImg(){
-    this.setData({fileList:[]})
+  delImg() {
+    this.setData({
+      fileList: []
+    })
   },
-  addDiray(){
-    const {fileList,name,number} = this.data
+  addDiray() {
+    const {
+      fileList,
+      name,
+      number
+    } = this.data
     console.log(111)
-    if(name == ''){
+    if (name == '') {
       wx.showToast({
         title: '请输入奖励内容',
         icon: 'none',
@@ -57,7 +75,7 @@ Page({
       })
       return
     }
-    if(number == ''){
+    if (number == '') {
       wx.showToast({
         title: '请输入所需鸡分',
         icon: 'none',
@@ -65,78 +83,98 @@ Page({
       })
       return
     }
-    if(fileList.length>0){
-      wx.cloud.uploadFile({
-        cloudPath: `my-photo${Date.now()}.png`,
-        filePath: fileList[0].url
-      }).then(data => {
-        console.log('data-----',data)
+    if (fileList.length > 0) {
+      console.log('fileList', fileList)
+      if (fileList[0].url.indexOf('cloud') >= 0) {
+        console.log(fileList[0].url.indexOf('cloud'))
         this.addcl({
-          name:name,
-          number:number,
-          status:true,
-          url:data.fileID
+          name: name,
+          number: number,
+          status: true,
+          url: fileList[0].url
         })
-      })
-      .catch(e => {
-        wx.showToast({ title: '上传失败', icon: 'none' });
-        console.log(e);
-      });
-    }else{
+      } else {
+        wx.cloud.uploadFile({
+            cloudPath: `my-photo${Date.now()}.png`,
+            filePath: fileList[0].url
+          }).then(data => {
+            console.log('data-----', data)
+            this.addcl({
+              name: name,
+              number: number,
+              status: true,
+              url: data.fileID
+            })
+          })
+          .catch(e => {
+            wx.showToast({
+              title: '上传失败',
+              icon: 'none'
+            });
+            console.log(e);
+          });
+      }
+    } else {
       this.addcl({
-        name:name,
-        number:number,
-        status:true,
-        url:""
+        name: name,
+        number: number,
+        status: true,
+        url: ""
       })
     }
   },
-  delDiray(e){
-    const {id} = this.data
-    console.log('id---',id)
+  delDiray(e) {
+    const {
+      id
+    } = this.data
+    console.log('id---', id)
     db.collection('reward').doc(id).remove({
-      success(res){
-        console.log("数据删除成功",res)
+      success(res) {
+        console.log("数据删除成功", res)
         wx.showToast({
           title: '删除成功',
           duration: 500
         })
-        setTimeout(()=>{
+        setTimeout(() => {
           wx.navigateBack()
-        },1000)
+        }, 1000)
       }
     })
   },
-  addcl(rewardList){
-    const {id} = this.data
-    if(id){
+  addcl(rewardList) {
+    const {
+      id
+    } = this.data
+    if (id) {
       db.collection('reward').doc(id).update({
-        data:{rewardList},
-        success(res){
+        data: {
+          rewardList
+        },
+        success(res) {
           wx.showToast({
             title: '保存成功',
             duration: 500
           })
-          setTimeout(()=>{
+          setTimeout(() => {
             wx.navigateBack()
-          },1000)
+          }, 1000)
         }
       })
-    }else{
+    } else {
       wx.cloud.callFunction({
         name: 'rewardList',
         data: {
           rewardList: rewardList
         },
         success: res => {
-          console.log('resss',res)
+          console.log('resss', res)
           wx.showToast({
             title: '添加成功',
             duration: 500
           })
-          setTimeout(()=>{
+          setTimeout(() => {
             wx.navigateBack()
-          },1000)
+          }, 1000)
         }
       })
     }

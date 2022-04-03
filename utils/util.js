@@ -35,6 +35,7 @@ const getInfo = () => {
     success: res2 => {
       const info =  res2.data.filter(item=>item._openid==openId)
       wx.setStorageSync('info', info[0])
+      return info[0]
     }
   })
 }

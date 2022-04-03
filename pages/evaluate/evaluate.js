@@ -1,11 +1,12 @@
 // pages/evaluate/evaluate.js
+const db = wx.cloud.database()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list:[]
   },
 
   /**
@@ -26,7 +27,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    wx.showLoading({
+      title: '加载中',
+    })
+    db.collection('integral').get({
+      success: res2=> {
+        console.log('res2----',res2)
+        this.setData({list:res2.data})
+        setTimeout(function () {
+          wx.hideLoading()
+        }, 1)
+      }
+    })
   },
 
   /**

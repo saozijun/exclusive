@@ -8,6 +8,6 @@
                 <view>价值鸡分:{{list[index].userorder.number}}</view>
             </view>
         </view>
-        <view class="item_box_r" bindtap="complete" data-item="{{list[index].rewardList}}"data-id="{{list[index]._id}}">{{list[index].rewardList.status?'完成':'已完成'}}</view>
+        <view class="item_box_r" bindtap="complete" data-item="{{list[index].userorder}}"data-id="{{list[index]._id}}">{{!list[index].userorder.status?'完成':'已完成'}}</view>
     </view>
 </view>

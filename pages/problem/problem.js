@@ -24,7 +24,6 @@ Page({
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -39,7 +38,10 @@ Page({
     const {id,item} = e.currentTarget.dataset
     const {info} = this.data
     const that = this
-    if(!item.status) return
+    if(item.status) return
+    wx.showLoading({
+      title: '完成中',
+    })
     db.collection('order').doc(id).update({
       data:{userorder:{status:!item.status}},
       success(res){
@@ -48,6 +50,18 @@ Page({
           icon:'none',
           duration: 2000
         })
+        wx.hideLoading()
+        db.collection('integral').add({
+          data:{list:{
+            number:item.number,
+            name:item.name,
+            type:0,
+            url:item.url
+          }},
+          success(integral){
+            console.log('integral---',integral)
+          }
+        })
         db.collection('order').get({
           success: res2=> {
             console.log('res2----',res2)
@@ -55,7 +69,7 @@ Page({
           }
         })
         db.collection('userInfos').doc(info._id).update({
-          data:{integral:parseInt(info.integral)+parseInt(item.number)},
+          data:{integral:parseInt(wx.getStorageSync('info').integral)+parseInt(item.number)},
           success(res){
             console.log('res---',res)
             util.getInfo()

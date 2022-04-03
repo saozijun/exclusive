@@ -2,7 +2,7 @@
 <view class="box">
     <view class="item_box" wx:for="{{list}}" wx:key="index">
       <view style="display: flex;alignItems: center;">
-            <van-image class="portrait" round width="50" height="50" src="{{list[index].rewardList.url==''?'cloud://cloud1-9gor3jg0a7f2b30a.636c-cloud1-9gor3jg0a7f2b30a-1306416878/手绘女孩.png':list[index].rewardList.url}}" />
+        <van-image class="portrait" round width="50" height="50" src="{{list[index].rewardList.url==''?'cloud://cloud1-9gor3jg0a7f2b30a.636c-cloud1-9gor3jg0a7f2b30a-1306416878/手绘女孩.png':list[index].rewardList.url}}" />
             <view class="item_box_l">
                 <view>{{list[index].rewardList.name}}</view>
                 <view>价值鸡分:{{list[index].rewardList.number}}</view>

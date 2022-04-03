@@ -17,6 +17,7 @@ Page({
   onLoad: function (options) {
     
   },
+
   getOrder(index){
     wx.cloud.callFunction({
       name: 'getOpenid',
@@ -63,6 +64,9 @@ Page({
       })
       return
     }
+    wx.showLoading({
+      title: '兑换中',
+    })
     db.collection('reward').doc(id).update({
       data:{rewardList:{status:!item.status}},
       success(res){
@@ -71,6 +75,18 @@ Page({
           icon:'none',
           duration: 2000
         })
+        wx.hideLoading()
+        db.collection('integral').add({
+          data:{list:{
+            number:-item.number,
+            name:item.name,
+            type:1,
+            url:item.url
+          }},
+          success(integral){
+            console.log('integral---',integral)
+          }
+        })
         db.collection('reward').get({
           success: res2=> {
             console.log('res2----',res2)
@@ -78,7 +94,7 @@ Page({
           }
         })
         db.collection('userInfos').doc(info._id).update({
-          data:{integral:parseInt(info.integral)-parseInt(item.number)},
+          data:{integral:parseInt(wx.getStorageSync('info').integral)-parseInt(item.number)},
           success(res){
             console.log('res---',res)
             util.getInfo()

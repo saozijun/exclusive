@@ -46,16 +46,6 @@ Page({
       }
     })
   },
-  getInfo() {
-    const {openId} = this.data
-    db.collection('userInfos').get({
-      success: res2 => {
-        const info =  res2.data.filter(item=>item._openid==openId)
-        wx.setStorageSync('info', info[0])
-        this.setData({info:info[0]})
-      }
-    })
-  },
   secede: function (e) {
     this.setData({
       userInfo: null,
@@ -96,14 +86,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    wx.cloud.callFunction({
-      name: 'getOpenid',
-      success: res => {
-        console.log('openId',res)
-        this.setData({openId:res.result.openId})
-        wx.setStorageSync('openId', res.result.openId)
-      }
-    })
+    const {openId} = this.data
+    if(!openId){
+      wx.cloud.callFunction({
+        name: 'getOpenid',
+        success: res => {
+          console.log('openId',res)
+          this.setData({openId:res.result.openId})
+          wx.setStorageSync('openId', res.result.openId)
+        }
+      })
+    }
   },
 
   /**
@@ -111,6 +104,18 @@ Page({
    */
   onReady: function () {
 
+  },
+  getInfo() {
+    const openId = this.data.openId || wx.getStorageSync('openId')
+    console.log('openId2222',openId)
+    db.collection('userInfos').get({
+      success: res2 => {
+        console.log('info',res2.data,openId)
+        const info =  res2.data.filter(item=>item._openid==openId)
+        wx.setStorageSync('info', info[0])
+        this.setData({info:info[0] || wx.getStorageSync('info')})
+      }
+    })
   },
 
   /**
@@ -125,7 +130,6 @@ Page({
       })
     }
     this.getInfo()
-    this.setData({info:wx.getStorageSync('info') || null})
   },
 
   /**

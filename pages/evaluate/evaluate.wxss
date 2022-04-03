@@ -1,4 +1,38 @@
 /* pages/evaluate/evaluate.wxss */
 page{
-  background-color: rgba(243, 243, 243, 0.288);
+  background-color: #EBEDF0;
+}
+.box{
+  width: 95%;
+  margin: 20px auto;
+  background-color: #fff;
+  /* height: 500px; */
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+.title{
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #656C74;
+}
+.title view:nth-child(1){
+  width: 220px;
+  /* background-color: aqua; */
+}
+.title view:nth-child(2){
+  width: 60px;
+  text-align: right;
+  flex-wrap: wrap;
+  /* background-color: aqua; */
+}
+.item{
+  margin-top: 20px;
+}
+.item .number1{
+  color: rgb(0, 206, 0);
+}
+.item .number2{
+  color: red;
 }
