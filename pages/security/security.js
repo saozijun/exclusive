@@ -53,7 +53,7 @@ Page({
   duihuan(e){
     console.log(e.currentTarget.dataset.id)
     const {id,item} = e.currentTarget.dataset
-    const {info} = this.data
+    const info = wx.getStorageSync('info')
     const that = this
     if(!item.status) return
     if(info.integral<item.number){
@@ -68,7 +68,7 @@ Page({
       title: '兑换中',
     })
     db.collection('reward').doc(id).update({
-      data:{rewardList:{status:!item.status}},
+      data:{rewardList:{status:true}},
       success(res){
         wx.showToast({
           title: `兑换成功，鸡分-${item.number}`,
@@ -77,10 +77,13 @@ Page({
         })
         wx.hideLoading()
         db.collection('integral').add({
-          data:{list:{
+          data:{
+            createTime: db.serverDate(), //添加该字段
+            list:{
             number:-item.number,
             name:item.name,
             type:1,
+            date:Date.now(),
             url:item.url
           }},
           success(integral){

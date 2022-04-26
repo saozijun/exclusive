@@ -1,5 +1,6 @@
 // pages/evaluate/evaluate.js
 const db = wx.cloud.database()
+const utils = require('../../utils/util')
 Page({
 
   /**
@@ -30,9 +31,12 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
-    db.collection('integral').get({
+    db.collection('integral').orderBy('createTime','desc').get({
       success: res2=> {
         console.log('res2----',res2)
+        res2.data.map(item=>{
+          item.list.date = utils.formatTime(new Date(item.list.date))
+        })
         this.setData({list:res2.data})
         setTimeout(function () {
           wx.hideLoading()

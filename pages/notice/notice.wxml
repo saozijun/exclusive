@@ -10,5 +10,5 @@
         </view>
         <view class="item_box_r" bindtap="topersonal" id="0" data-item="{{list[index]}}">编辑</view>
     </view>
-    <view class="btn" bindtap="add" bindtap="topersonal" id="1">添加</view>
+    <view class="btn" bindtap="topersonal" id="1">添加</view>
 </view>

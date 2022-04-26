@@ -4,16 +4,6 @@
   "packOptions": {
     "ignore": []
   },
-  "triggers": [
-    {
-      
-      "name": "myTrigger",
-
-      "type": "timer",
-
-      "config": "0 0 2 * * * *"
-    }
-  ],
   "setting": {
     "urlCheck": false,
     "es6": true,

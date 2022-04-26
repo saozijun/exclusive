@@ -52,10 +52,13 @@ Page({
         })
         wx.hideLoading()
         db.collection('integral').add({
-          data:{list:{
+          data:{
+            createTime: db.serverDate(), //添加该字段
+            list:{
             number:item.number,
             name:item.name,
             type:0,
+            date:Date.now(),
             url:item.url
           }},
           success(integral){

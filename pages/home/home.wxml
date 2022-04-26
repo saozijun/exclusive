@@ -22,6 +22,9 @@
   <view class="function" bindtap="tonotice">
     <text>奖励管理</text>
   </view>
+  <view class="function" bindtap="toymzs">
+    <text>姨妈助手</text>
+  </view>
 </View>
 <block wx:if="{{getuserbtn}}">
   <view class="btn" bindtap="getUserInfo">登录</view>

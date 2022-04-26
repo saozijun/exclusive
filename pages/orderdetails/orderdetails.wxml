@@ -1,11 +1,44 @@
 <!--pages/orderdetails/orderdetails.wxml-->
-<view class="centerbox">
-  <view>
-    <text>{{order.title}}</text>
-  </view>
-  <view>
-    <text>订单号 : </text>
-    <text>{{order.ordernumber}}</text>
-  </view>
-  <van-button type="primary" bind:click="usenow">立即使用</van-button>
-</view>
+<van-tabs active="{{ active }}" bind:change="onChange" animated swipeable sticky style="touch-action: none;">
+  <van-tab title="记录">
+    <van-empty  wx:if="{{list.length==0}}" description="暂无记录~ 宝快快记录!" />
+    <view style="height:15px"></view>
+    <van-swipe-cell style="touch-action: none;" id="{{list[index]._id}}" right-width="{{ 65 }}" async-close
+      wx:for="{{list}}" wx:key="index"
+      bind:close="onClose2">
+      <van-cell-group>
+        <view class="box2">
+          <view class="box2_item">
+            <view>来姨妈的日期</view>
+            <view>{{list[index].list.startdate}}至{{list[index].list.enddate}}</view>
+          </view>
+          <view class="box2_item">
+            <view>持续天数</view>
+            <view>{{list[index].day}} 天</view>
+          </view>
+          <view class="box2_item">
+            <view>周期</view>
+            <view>{{list[index].list.number}} 天</view>
+          </view>
+        </view>
+      </van-cell-group>
+      <view slot="right" >删除</view>
+    </van-swipe-cell>
+  </van-tab>
+  <van-tab title="添加" class="tag">
+    <view class="centerbox">
+      <view class="box" bindtap="onDisplay">
+        <view>姨妈来咯~</view>
+        <view>{{ date || '请记录~' }}</view>
+      </view>
+      <view class="box" bindtap="onDisplay2">
+        <view>姨妈走咯~</view>
+        <view>{{ date2 || '请记录~' }}</view>
+      </view>
+    </view>
+    <van-calendar show="{{ show }}" bind:close="onClose" bind:confirm="onConfirm" color="linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)"  default-date="{{start}}" />
+    <van-calendar show="{{ show2 }}" bind:close="onClose" bind:confirm="onConfirm2"  color="linear-gradient(to right, #ffc3a0 0%, #ffafbd 100%)"/>
+    <view class="btn" wx:if="{{active==1}}" bindtap="addym">记录一下~</view>
+  </van-tab>
+</van-tabs>
+<van-dialog id="van-dialog" />

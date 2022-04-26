@@ -83,6 +83,14 @@ Page({
       })
       return
     }
+    if (number == 0) {
+      wx.showToast({
+        title: '鸡分不能为0',
+        icon: 'none',
+        duration: 2000
+      })
+      return
+    }
     if (fileList.length > 0) {
       console.log('fileList', fileList)
       if (fileList[0].url.indexOf('cloud') >= 0) {

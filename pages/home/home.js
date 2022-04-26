@@ -67,6 +67,11 @@ Page({
       url: '/pages/evaluate/evaluate',
     })
   },
+  toymzs: function (e) {
+    wx.navigateTo({
+      url: '/pages/orderdetails/orderdetails',
+    })
+  },
   tocomment: function (e) {
     wx.navigateTo({
       url: '/pages/comment/comment',

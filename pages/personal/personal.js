@@ -73,7 +73,7 @@ Page({
         this.addcl({
           name:name,
           number:number,
-          status:true,
+          status:false,
           url:data.fileID
         })
       })
@@ -85,7 +85,7 @@ Page({
       this.addcl({
         name:name,
         number:number,
-        status:true,
+        status:false,
         url:""
       })
     }

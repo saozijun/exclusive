@@ -2,7 +2,7 @@
 <view>
   <view class="box">
     <van-field value="{{name}}" label="任务内容" placeholder="请输入任务内容" input-class="input-class" bind:input="getuser" data-value="name" />
-    <van-field value="{{number}}" border="{{ false }}" type="number" label="任务鸡分" placeholder="请输入任务鸡粉" bind:input="getuser" data-value="number" />
+    <van-field value="{{number}}" border="{{ false }}" type="number" label="任务鸡分" placeholder="请输入任务鸡分" bind:input="getuser" data-value="number" />
   </view>
   <view class="img">
       <view style="margin-bottom: 10px;">任务图片(非必传)</view>
